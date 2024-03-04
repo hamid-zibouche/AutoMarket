@@ -9,7 +9,8 @@
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -281,7 +282,20 @@
                 android:layout_height="match_parent"
                 android:id="@+id/view1"
                 android:paddingStart="16dp"
-                android:paddingEnd="16dp"/>
+                android:paddingEnd="16dp"
+                android:nestedScrollingEnabled="false"
+                >
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <LinearLayout
+                android:id="@+id/vh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"/>
+
+
 
         </LinearLayout>
     </ScrollView>
@@ -305,6 +319,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/Explorer"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
@@ -330,6 +345,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/favoris"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
@@ -355,6 +371,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/annonce"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
@@ -380,6 +397,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/profile"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
@@ -406,4 +424,5 @@
             </LinearLayout>
         </com.google.android.material.bottomappbar.BottomAppBar>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

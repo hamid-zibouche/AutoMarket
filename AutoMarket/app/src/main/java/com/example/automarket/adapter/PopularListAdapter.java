@@ -42,17 +42,17 @@ public class PopularListAdapter extends RecyclerView.Adapter<PopularListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull PopularListAdapter.Viewholder holder, int position) {
-    holder.titleTxt.setText(items.get(position).getTitle());
+        holder.titleTxt.setText(items.get(position).getTitle());
         holder.feeTxt.setText(String.valueOf(items.get(position).getPrice())+"€"); // Convert int to String
         holder.scoreTxt.setText(String.valueOf(items.get(position).getScore()));
 
-    int drawableResourceId = holder.itemView.getResources().getIdentifier(items.get(position).getPicUrl(),
+        int drawableResourceId = holder.itemView.getResources().getIdentifier(items.get(position).getPicUrl(),
             "drawable", holder.itemView.getContext().getPackageName());
-    Glide.with(holder.itemView.getContext())
+        Glide.with(holder.itemView.getContext())
             .load(drawableResourceId)
             .transform(new GranularRoundedCorners(30,30,0,0))
             .into(holder.pic);
-    holder.itemView.setOnClickListener(new View.OnClickListener(){
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
 
         @Override
         public void onClick(View v) {

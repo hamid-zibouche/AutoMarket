@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AutoMarket</string>
+    <string name="welcome_to_auto_market">Welcome to Auto Market</string>
+    <string name="Login" />
 </resources>

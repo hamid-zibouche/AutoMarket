@@ -15,20 +15,23 @@
         <activity
             android:name=".registerActivity2"
             android:exported="false" />
-        <activity
-            android:name=".Register"
-            android:exported="false" />
-        <activity
-            android:name=".Login"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
+
+
+
         <activity
             android:name=".IntroActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Favoris"
+            android:exported="false" />
+        <activity
+            android:name=".AddAnnonce"
+            android:exported="false" />
+        <activity
+            android:name=".DetailActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

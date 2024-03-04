@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:padding="16dp">
+
+<EditText
+    android:id="@+id/etMarque"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Marque" />
+
+<EditText
+    android:id="@+id/etModele"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/etMarque"
+    android:hint="Modèle" />
+
+<EditText
+    android:id="@+id/etBoite"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/etModele"
+    android:hint="Boite de vitesse" />
+
+<EditText
+    android:id="@+id/etEnergie"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/etBoite"
+    android:hint="Énergie (Diesel, Essence, Électrique, GPL)" />
+
+<EditText
+    android:id="@+id/etMoteur"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/etEnergie"
+    android:hint="Moteur" />
+
+<EditText
+    android:id="@+id/etKilometrage"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/etMoteur"
+    android:hint="Kilométrage"
+    android:inputType="number" />
+
+<EditText
+    android:id="@+id/etCouleur"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/etKilometrage"
+    android:hint="Couleur" />
+
+<EditText
+    android:id="@+id/etAnnee"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/etCouleur"
+    android:hint="Année de fabrication"
+    android:inputType="number" />
+
+<EditText
+    android:id="@+id/etPrix"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/etAnnee"
+    android:hint="Prix"
+    android:inputType="numberDecimal" />
+
+<EditText
+    android:id="@+id/etPhotoUrl"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/etPrix"
+    android:hint="URL de la photo" />
+
+<EditText
+    android:id="@+id/etCommentaire"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/etPhotoUrl"
+    android:hint="Commentaire" />
+
+<EditText
+    android:id="@+id/etAdresse"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/etCommentaire"
+    android:hint="Adresse de la voiture" />
+
+<Button
+    android:id="@+id/btnAddAnnonce"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/etAdresse"
+    android:text="Ajouter l'annonce" />
+
+</RelativeLayout>

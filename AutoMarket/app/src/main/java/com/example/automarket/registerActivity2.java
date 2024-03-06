@@ -54,8 +54,8 @@ public class registerActivity2 extends AppCompatActivity {
                     Toast.makeText(registerActivity2.this, "Tous les champs doivent être renseignés", Toast.LENGTH_SHORT).show();
                 } else {
                     if (passwordText.equals(confirmpasswordText)) {
-                        Boolean checkUserEmail = myDB.checkemail(emailText);
-                        if (!checkUserEmail) {
+                        Boolean checkUserUsername = myDB.checkUsername(usernameText);
+                        if (!checkUserUsername) {
                             // Ajouter l'utilisateur à la base de données
                             Boolean insert = myDB.addUser(new User(usernameText, emailText, passwordText, telephoneText));
                             if (insert) {
@@ -66,7 +66,7 @@ public class registerActivity2 extends AppCompatActivity {
                                 Toast.makeText(registerActivity2.this, "Inscription non réussie", Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(registerActivity2.this, "L'email existe déjà", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(registerActivity2.this, "Username  existe déjà", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         Toast.makeText(registerActivity2.this, "Les mots de passe ne correspondent pas", Toast.LENGTH_SHORT).show();

@@ -13,7 +13,7 @@
     <string name="s_inscrire">S\'INSCRIRE</string>
     <string name="j_ai_deja_un_compte">J\'ai deja un compte</string>
     <string name="email_field_description">Champ d\'adresse e-mail éditable</string>
-
+    <string name="todoo">TODO</string>
 
 
 </resources>

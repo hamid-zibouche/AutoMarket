@@ -24,6 +24,9 @@ public class User {
         this.phone = phone;
     }
 
+    public User(int id, String username, String email, int telephone) {
+    }
+
     public String getUsername() {
         return username;
     }

@@ -1,6 +1,7 @@
 package com.example.automarket.Controller;
 
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -75,9 +76,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return null;
     }
 
-    public Boolean checkemail (String email){
+    public Boolean checkUsername (String username){
         SQLiteDatabase MyDtabase = this.getWritableDatabase();
-        Cursor cursor = MyDtabase.rawQuery("select * from users where email = ?", new String[]{email} );
+        Cursor cursor = MyDtabase.rawQuery("select * from users where username = ?", new String[]{username} );
 
         if(cursor.getCount() >0 ){
     return  true;
@@ -86,16 +87,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    public Boolean checkEmailPassword(String email, String password){
-        SQLiteDatabase MyDtabase = this.getWritableDatabase();
-        Cursor cursor = MyDtabase.rawQuery("select * from users where email = ? and password = ?", new String[]{email} );
 
-        if(cursor.getCount() >0 ){
-            return  true;
-        }else{
-            return false;
+
+    public User checkUsernamePassword(String username, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        User user = null;
+
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username = ? AND password = ?", new String[]{username, password});
+
+        if (cursor.moveToFirst()) {
+            // Récupérer les détails de user
+            int id = cursor.getInt(cursor.getInt(0));
+            String email = cursor.getString(Integer.parseInt(cursor.getString(1)));
+            int telephone = cursor.getInt(cursor.getInt(3));
+
+            // Créer un objet User avec les donnees recuperer récupérés
+            user = new User(id, username, email, telephone);
         }
+
+        cursor.close();
+        db.close();
+
+        return user;
     }
+
 
     public User getUser(int id){
         SQLiteDatabase database = this.getReadableDatabase();

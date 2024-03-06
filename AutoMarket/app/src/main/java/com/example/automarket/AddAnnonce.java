@@ -2,6 +2,7 @@ package com.example.automarket;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,11 @@ import android.widget.Toast;
 import com.example.automarket.Controller.DatabaseHandler;
 import com.example.automarket.Model.Annonce;
 import com.example.automarket.Utils.Utils;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class AddAnnonce extends AppCompatActivity {
 
@@ -67,12 +73,21 @@ public class AddAnnonce extends AppCompatActivity {
         if (!marque.isEmpty() && !modele.isEmpty() && !boite.isEmpty() && !energie.isEmpty() && !moteur.isEmpty()
                 && !couleur.isEmpty() && !photoUrl.isEmpty() && !commentaire.isEmpty() && !adresse.isEmpty()  ){
 
+            Date date = Calendar.getInstance().getTime();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
+            String dateStr = dateFormat.format(date);
+
             Annonce annonce = new Annonce(marque, modele, boite, energie, moteur, kilometrage,
-                    couleur, annee, prix, photoUrl, commentaire, adresse);
+                    couleur, annee, prix, photoUrl, commentaire, adresse, dateStr);
 
             dbHandler.addAnnonce(annonce, Utils.DEFAULT_USER_ID); // DEFAULT_USER_ID or the current user ID
 
             Toast.makeText(this, "Annonce ajoutée avec succès", Toast.LENGTH_SHORT).show();
+
+            // Actualiser l'affichage dans MainActivity
+            Intent refreshIntent = new Intent(this, MainActivity.class);
+            startActivity(refreshIntent);
+
             finish(); // Close activity after adding annonce
         } else {
             Toast.makeText(this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();

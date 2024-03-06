@@ -48,9 +48,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 Utils.KEY_PRIX + " REAL," +
                 Utils.KEY_PHOTO_URL + " TEXT," +
                 Utils.KEY_COMMENTAIRE + " TEXT," +
-                Utils.KEY_ADRESSE + " TEXT" + ")";
-        db.execSQL(CREATE_ANNONCE_TABLE);
+                Utils.KEY_ADRESSE + " TEXT," +
+                Utils.KEY_DATE + " TEXT" +")";
 
+        db.execSQL(CREATE_ANNONCE_TABLE);
 
     }
 
@@ -138,6 +139,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(Utils.KEY_PHOTO_URL, annonce.getPhotoUrl());
         values.put(Utils.KEY_COMMENTAIRE, annonce.getCommentaire());
         values.put(Utils.KEY_ADRESSE, annonce.getAdresse());
+        values.put(Utils.KEY_DATE, annonce.getDateCreation());
 
         database.insert(Utils.TABLE_ANNONCE, null, values);
         database.close();
@@ -202,7 +204,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public List<Annonce> getAllAnnonces() {
         List<Annonce> annonceList = new ArrayList<>();
-        String selectQuery = "SELECT * FROM " + Utils.TABLE_ANNONCE ;
+        String selectQuery = "SELECT * FROM " + Utils.TABLE_ANNONCE + " ORDER BY " + Utils.KEY_DATE + " DESC";
 
         SQLiteDatabase database = this.getReadableDatabase();
         Cursor cursor = database.rawQuery(selectQuery, null);
@@ -224,6 +226,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 annonce.setPhotoUrl(cursor.getString(11)); // 11 est l'index de la colonne PHOTO_URL
                 annonce.setCommentaire(cursor.getString(12)); // 12 est l'index de la colonne COMMENTAIRE
                 annonce.setAdresse(cursor.getString(13)); // 13 est l'index de la colonne ADRESSE
+                annonce.setDateCreation(cursor.getString(14));
 
                 annonceList.add(annonce);
             } while (cursor.moveToNext());

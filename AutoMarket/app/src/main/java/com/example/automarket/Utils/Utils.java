@@ -26,6 +26,8 @@ public class Utils {
     public static final String KEY_PRIX = "prix";
     public static final String KEY_PHOTO_URL = "photo_url";
     public static final String KEY_COMMENTAIRE = "commentaire";
+    public static final String KEY_DATE = "dateCreation";
+    public static final String KEY_HEURE = "heureCreation";
 
     public static final int DEFAULT_USER_ID = 0;
 }

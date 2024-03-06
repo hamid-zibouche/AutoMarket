@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.automarket.Controller.DatabaseHandler;
 import com.example.automarket.Model.Annonce;
@@ -38,7 +39,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         initRecyclerView();
+        initAllVehicules();
+        appeler();
         annonce();
         favoris();
         profile();
@@ -61,10 +65,20 @@ public class MainActivity extends AppCompatActivity {
         adapterPopular=new PopularListAdapter(items);
         recyclerViewPopular1.setAdapter(adapterPopular);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initAllVehicules(); // Actualiser la liste des annonces lors de la reprise de MainActivity
+    }
+    public void initAllVehicules(){
         db = new DatabaseHandler(this);
 
         List<Annonce> annonces = db.getAllAnnonces();
 
+        LinearLayout vh = findViewById(R.id.vh);
+        vh.removeAllViews(); // Supprimer toutes les vues précédentes avant d'ajouter les nouvelles annonces
 
         for (Annonce annonce:annonces) {
             Log.d("annonce",annonce.getBoite());
@@ -76,17 +90,54 @@ public class MainActivity extends AppCompatActivity {
                 View itemView = getLayoutInflater().inflate(R.layout.list_vehicules, null);
 
                 // Trouver les TextViews dans l'itemView
-                TextView titleTextView = itemView.findViewById(R.id.titleTxt);
+                TextView marque = itemView.findViewById(R.id.marque);
+                TextView model = itemView.findViewById(R.id.model);
+                TextView annee = itemView.findViewById(R.id.annee);
                 TextView priceTextView = itemView.findViewById(R.id.feetxt);
                 ImageView photo = itemView.findViewById(R.id.pic);
 
-                // Définir le titre et le prix à partir de l'objet PopularDomain
-                titleTextView.setText(annonce.getMarque());
-                priceTextView.setText(String.valueOf(annonce.getPrix()) + "€");
-                int drawableResourceId = getResources().getIdentifier(annonce.getPhotoUrl(), "drawable", getPackageName());
+                TextView kelo = itemView.findViewById(R.id.kelo);
+                TextView carburant = itemView.findViewById(R.id.carburant);
+                TextView moteur = itemView.findViewById(R.id.moteur);
+                TextView boite = itemView.findViewById(R.id.boite);
 
+                TextView adresse = itemView.findViewById(R.id.adresse);
+                TextView time = itemView.findViewById(R.id.time);
+
+                // Définir le titre et le prix à partir de l'objet PopularDomain
+                int drawableResourceId = getResources().getIdentifier(annonce.getPhotoUrl(), "drawable", getPackageName());
                 // Mettre l'image dans l'ImageView
                 photo.setImageResource(drawableResourceId);
+                marque.setText(annonce.getMarque());
+                model.setText(annonce.getModele());
+                annee.setText(String.valueOf(annonce.getAnnee()));
+                priceTextView.setText(String.valueOf(annonce.getPrix()) + "€");
+
+                kelo.setText(String.valueOf(annonce.getKilometrage())+"KM");
+                carburant.setText(annonce.getEnergie());
+                moteur.setText(annonce.getMoteur());
+                boite.setText(annonce.getBoite());
+                adresse.setText(annonce.getAdresse());
+                time.setText(annonce.getDateCreation());
+
+                //methode d'appelle
+                TextView appeler = itemView.findViewById(R.id.appeler);
+                appeler.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText( MainActivity.this, "APPELER", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+                //methode de message
+                TextView message = itemView.findViewById(R.id.message);
+                message.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText( MainActivity.this, "MESSAGE", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
                 // Ajouter un OnClickListener à chaque itemView
                 itemView.setOnClickListener(new View.OnClickListener() {
@@ -102,11 +153,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                LinearLayout vh = findViewById(R.id.vh);
+
                 vh.addView(itemView);
             }
         }
-
     }
 
     public void favoris(){
@@ -143,6 +193,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+    }
+
+    public void appeler(){
 
     }
 }

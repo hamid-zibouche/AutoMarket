@@ -27,9 +27,9 @@ public class DetailActivity extends AppCompatActivity {
             TextView priceTextView = findViewById(R.id.textView3);
             TextView scoreTextView = findViewById(R.id.textView4);
 
-            titleTextView.setText(objet.getMarque());
+            titleTextView.setText(objet.toString());
             priceTextView.setText(String.valueOf(objet.getPrix()) + "€");
-            scoreTextView.setText(String.valueOf(objet.getUserId()));
+            scoreTextView.setText(objet.getDateCreation());
         }
     }
 }

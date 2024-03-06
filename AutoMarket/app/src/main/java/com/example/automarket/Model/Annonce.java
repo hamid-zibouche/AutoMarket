@@ -1,6 +1,7 @@
 package com.example.automarket.Model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Annonce implements Serializable {
     private int id;
@@ -18,12 +19,13 @@ public class Annonce implements Serializable {
     private String commentaire;
     private String adresse; // Adresse de l'annonce
 
+    private String dateCreation; // Heure de création de l'annonce
     public Annonce() {
     }
 
     public Annonce(String marque, String modele, String boite, String energie, String moteur,
                    int kilometrage, String couleur, int annee, double prix, String photoUrl, String commentaire,
-                   String adresse) {
+                   String adresse, String dateCreation) {
 
         this.marque = marque;
         this.modele = modele;
@@ -37,6 +39,7 @@ public class Annonce implements Serializable {
         this.photoUrl = photoUrl;
         this.commentaire = commentaire;
         this.adresse = adresse;
+        this.dateCreation = dateCreation;
     }
 
     // Getters and Setters
@@ -153,6 +156,18 @@ public class Annonce implements Serializable {
         this.adresse = adresse;
     }
 
+    public String getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(String dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+
+
+
+
     @Override
     public String toString() {
         return "Annonce{" +
@@ -170,6 +185,7 @@ public class Annonce implements Serializable {
                 ", photoUrl='" + photoUrl + '\'' +
                 ", commentaire='" + commentaire + '\'' +
                 ", adresse='" + adresse + '\'' +
+                ", DateCreation ='" + dateCreation + '\'' +
                 '}';
     }
 }

@@ -7,8 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
 import com.example.automarket.Model.Annonce;
 import com.example.automarket.Model.User;
 import com.example.automarket.Utils.Utils;
@@ -62,7 +60,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    public void addUser(User user){
+    public Boolean addUser(User user){
         SQLiteDatabase database =this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -74,6 +72,29 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         database.insert(Utils.TABLE_USERS,null,contentValues);
         database.close();
 
+        return null;
+    }
+
+    public Boolean checkemail (String email){
+        SQLiteDatabase MyDtabase = this.getWritableDatabase();
+        Cursor cursor = MyDtabase.rawQuery("select * from users where email = ?", new String[]{email} );
+
+        if(cursor.getCount() >0 ){
+    return  true;
+        }else{
+            return false;
+        }
+    }
+
+    public Boolean checkEmailPassword(String email, String password){
+        SQLiteDatabase MyDtabase = this.getWritableDatabase();
+        Cursor cursor = MyDtabase.rawQuery("select * from users where email = ? and password = ?", new String[]{email} );
+
+        if(cursor.getCount() >0 ){
+            return  true;
+        }else{
+            return false;
+        }
     }
 
     public User getUser(int id){

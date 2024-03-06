@@ -2,4 +2,18 @@
     <string name="app_name">AutoMarket</string>
     <string name="welcome_to_auto_market">Welcome to Auto Market</string>
     <string name="Login" />
+    <string name="INSCRIPTION" />
+    <string name="Nom_Utilisateur">Nom Utilisateur</string>
+    <string name="Email" />
+    <string name="error" />
+    <string name="Mot_de_passe">Mot de passe</string>
+    <string name="Confirmer_Mot_de_passe">Confirmer Mot de passe</string>
+    <string name="Numero_de_Telephone">Numero de Telephone</string>
+    <string name="todo">TODO</string>
+    <string name="s_inscrire">S\'INSCRIRE</string>
+    <string name="j_ai_deja_un_compte">J\'ai deja un compte</string>
+    <string name="email_field_description">Champ d\'adresse e-mail éditable</string>
+
+
+
 </resources>

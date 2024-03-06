@@ -17,7 +17,6 @@
             android:exported="false" />
 
 
-
         <activity
             android:name=".IntroActivity"
             android:exported="false" />

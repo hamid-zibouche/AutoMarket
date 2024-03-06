@@ -28,6 +28,7 @@
 
 
       <TextView
+          android:id="@+id/inscription"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="18dp"
@@ -44,9 +45,9 @@
           android:layout_marginTop="15dp"
           android:layout_marginRight="15dp"
           android:gravity="center"
-          android:text="error"
+          android:text="@string/error"
           android:textColor="#ff0000"
-          android:textSize="20dp"
+          android:textSize="20sp"
           android:visibility="gone"> </TextView>
 
       <EditText
@@ -57,7 +58,7 @@
           android:layout_marginTop="28dp"
           android:layout_marginRight="10dp"
           android:background="#f2f2f2"
-          android:hint="Nom Utilisateur"
+          android:hint="@string/Nom_Utilisateur"
           android:padding="10dp"> </EditText>
 
       <EditText
@@ -70,29 +71,31 @@
           android:background="#f2f2f2"
           android:hint="Email"
           android:inputType="textEmailAddress"
-          android:padding="10dp"> </EditText>
+          android:padding="10dp"/>
+
+
 
       <EditText
-          android:id="@+id/motdepasse"
+          android:id="@+id/password"
           android:layout_width="match_parent"
           android:layout_height="60dp"
           android:layout_marginLeft="10dp"
           android:layout_marginTop="28dp"
           android:layout_marginRight="10dp"
           android:background="#f2f2f2"
-          android:hint="Mot de passe"
+          android:hint="@string/Mot_de_passe"
           android:inputType="textPassword"
           android:padding="10dp"> </EditText>
 
       <EditText
-          android:id="@+id/cmotdepasse"
+          android:id="@+id/confirmpassword"
           android:layout_width="match_parent"
           android:layout_height="60dp"
           android:layout_marginLeft="10dp"
           android:layout_marginTop="28dp"
           android:layout_marginRight="10dp"
           android:background="#f2f2f2"
-          android:hint="Confirmer Mot de passe"
+          android:hint="@string/Confirmer_Mot_de_passe"
           android:inputType="textPassword"
           android:padding="10dp"> </EditText>
 
@@ -104,17 +107,18 @@
           android:layout_marginTop="28dp"
           android:layout_marginRight="10dp"
           android:background="#f2f2f2"
-          android:hint="Numero de Telephone"
+          android:hint="@string/Numero_de_Telephone"
           android:padding="10dp"> </EditText>
 
       <TextView
+          android:id="@+id/loginRedirectText"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="28dp"
           android:gravity="center"
-          android:text="J'ai deja un compte"
+          android:text="@string/j_ai_deja_un_compte"
           android:textColor="@color/black"
-          android:textSize="18dp"> </TextView>
+          android:textSize="18sp"> </TextView>
 
       <LinearLayout
           android:layout_width="match_parent"
@@ -122,14 +126,14 @@
           android:orientation="vertical">
 
         <Button
-            android:id="@+id/connection"
+            android:id="@+id/signup"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
             android:backgroundTint="@color/black"
-            android:text="S'INSCRIRE">
+            android:text="@string/s_inscrire">
 
         </Button>
       </LinearLayout>
@@ -142,7 +146,9 @@
       android:id="@+id/imageButton2"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      app:srcCompat="@drawable/arrow" />
+      app:srcCompat="@drawable/arrow"
+      tools:ignore="MissingConstraints"
+      android:contentDescription="@string/todo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

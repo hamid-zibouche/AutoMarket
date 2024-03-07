@@ -1,4 +1,6 @@
 <resources>
+
+
     <string name="app_name">AutoMarket</string>
     <string name="welcome_to_auto_market">Welcome to Auto Market</string>
     <string name="Login" />
@@ -14,6 +16,7 @@
     <string name="j_ai_deja_un_compte">J\'ai deja un compte</string>
     <string name="email_field_description">Champ d\'adresse e-mail éditable</string>
     <string name="todoo">TODO</string>
+    <string name="changer_de_langue">Changer de langue</string>
 
 
 </resources>

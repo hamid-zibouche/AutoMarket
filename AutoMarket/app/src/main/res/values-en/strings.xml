@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AutoMarket</string>
+    <string name="welcome_to_auto_market">Welcome to Auto Market</string>
+    <string name="Login" />
+    <string name="INSCRIPTION" />
+    <string name="Nom_Utilisateur">Username</string>
+    <string name="Email" />
+    <string name="error" />
+    <string name="Mot_de_passe">Password</string>
+    <string name="Confirmer_Mot_de_passe">Confirm Password</string>
+    <string name="Numero_de_Telephone">Number phone</string>
+    <string name="todo">TODO</string>
+    <string name="s_inscrire">S\'INSCRIRE</string>
+    <string name="j_ai_deja_un_compte">Already have account</string>
+    <string name="email_field_description">Editable email address field</string>
+    <string name="todoo">TODO</string>
+    <string name="changer_de_langue">Change language</string>
+</resources>

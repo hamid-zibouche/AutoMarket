@@ -185,7 +185,7 @@ public class Annonce implements Serializable {
                 ", photoUrl='" + photoUrl + '\'' +
                 ", commentaire='" + commentaire + '\'' +
                 ", adresse='" + adresse + '\'' +
-                ", DateCreation ='" + dateCreation + '\'' +
+                ", dateCreation ='" + dateCreation + '\'' +
                 '}';
     }
 }

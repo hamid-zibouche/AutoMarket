@@ -89,28 +89,42 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-
     public User checkUsernamePassword(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         User user = null;
 
         Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username = ? AND password = ?", new String[]{username, password});
 
-        if (cursor.moveToFirst()) {
-            // Récupérer les détails de user
-            int id = cursor.getInt(cursor.getInt(0));
-            String email = cursor.getString(Integer.parseInt(cursor.getString(1)));
-            int telephone = cursor.getInt(cursor.getInt(3));
+        if (cursor != null && cursor.moveToFirst()) {
+            // Vérifier si la colonne "id" existe dans le curseur
+            int idIndex = cursor.getColumnIndex(Utils.KEY_ID);
+            int usernameIndex = cursor.getColumnIndex(Utils.KEY_USERNAME);
+            int emailIndex = cursor.getColumnIndex(Utils.KEY_EMAIL);
+            int phoneIndex = cursor.getColumnIndex(Utils.KEY_PHONE);
 
-            // Créer un objet User avec les donnees recuperer récupérés
-            user = new User(id, username, email, telephone);
+            if (idIndex != -1 && usernameIndex != -1 && emailIndex != -1 && phoneIndex != -1) {
+                // Récupérer les valeurs des colonnes à partir du curseur
+                int id = cursor.getInt(idIndex);
+                String fetchedUsername = cursor.getString(usernameIndex);
+                String email = cursor.getString(emailIndex);
+                String phone = cursor.getString(phoneIndex);
+
+                // Créer un objet User avec les données récupérées
+                user = new User(id, fetchedUsername, email, phone);
+            }
         }
 
-        cursor.close();
+        if (cursor != null) {
+            cursor.close();
+        }
         db.close();
 
         return user;
     }
+
+
+
+
 
 
     public User getUser(int id){

@@ -35,6 +35,7 @@ import com.example.automarket.Controller.DatabaseHandler;
 import com.example.automarket.Model.Annonce;
 import com.example.automarket.adapter.PopularListAdapter;
 import com.example.automarket.domain.PopularDomain;
+import com.example.automarket.Utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerViewPopular1;
     private DatabaseHandler db;
 
+
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
     private static final int PICK_IMAGE = 1;
 
@@ -54,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         loadLocale();
         setContentView(R.layout.activity_main);
-
 
 
 
@@ -144,6 +145,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+
         initAllVehicules(); // Actualiser la liste des annonces lors de la reprise de MainActivity
     }
 

@@ -23,13 +23,41 @@ public class DetailActivity extends AppCompatActivity {
             int score = intent.getIntExtra("score", 0);
 
             // Afficher les données dans les TextViews de votre layout
-            TextView titleTextView = findViewById(R.id.textView2);
-            TextView priceTextView = findViewById(R.id.textView3);
-            TextView scoreTextView = findViewById(R.id.textView4);
 
-            titleTextView.setText(objet.toString());
-            priceTextView.setText(String.valueOf(objet.getPrix()) + "€");
-            scoreTextView.setText(objet.getDateCreation());
+            TextView titre = findViewById(R.id.textView9);
+            TextView prixTitre = findViewById(R.id.textView17);
+
+            TextView prix = findViewById(R.id.prix);
+            TextView marque = findViewById(R.id.marque);
+            TextView modele = findViewById(R.id.modele);
+            TextView boite = findViewById(R.id.boite);
+            TextView energie = findViewById(R.id.energie);
+            TextView moteur = findViewById(R.id.moteur);
+            TextView kilometrage = findViewById(R.id.kilometrage);
+            TextView couleur = findViewById(R.id.couleur);
+            TextView annee = findViewById(R.id.annee);
+            TextView adresse = findViewById(R.id.adresse);
+            TextView date = findViewById(R.id.date);
+            TextView description = findViewById(R.id.description);
+
+
+
+            titre.setText(objet.getMarque() + " "+objet.getModele()+" "+String.valueOf(objet.getAnnee()));
+
+            prix.setText(String.valueOf(objet.getPrix()) + " €");
+            prixTitre.setText(String.valueOf(objet.getPrix()) + " €");
+            date.setText(objet.getDateCreation());
+            marque.setText(objet.getMarque());
+            modele.setText(objet.getModele());
+            boite.setText(objet.getBoite());
+            energie.setText(objet.getEnergie());
+            moteur.setText(objet.getMoteur());
+            kilometrage.setText(String.valueOf(objet.getKilometrage())+" KM");
+            couleur.setText(objet.getCouleur());
+            annee.setText(String.valueOf(objet.getAnnee()));
+            adresse.setText(objet.getAdresse());
+            description.setText(objet.getCommentaire());
+
         }
     }
 }

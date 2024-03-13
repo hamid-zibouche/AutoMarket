@@ -502,10 +502,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:text="null"
+                            android:text="wdfgsdfgsdf"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.071"
-                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@+id/textView30"
                             app:layout_constraintTop_toBottomOf="@+id/textView30" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -547,17 +547,16 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="24dp"
+                    android:background="@drawable/contact_background"
                     android:orientation="vertical"
-                    android:paddingStart="8dp"
+                    android:paddingStart="24dp"
                     android:paddingTop="16dp"
-                    android:paddingEnd="8dp"
+                    android:paddingEnd="24dp"
                     android:paddingBottom="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout12"
-                    android:background="@drawable/contact_background"
-                    >
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout12">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -569,14 +568,13 @@
                             android:id="@+id/imageView10"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_marginRight="16dp"
                             app:srcCompat="@drawable/btn_4" />
 
                         <TextView
                             android:id="@+id/nomprenom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="10"
                             android:padding="2dp"
                             android:text="Hamid zibouche" />
                     </LinearLayout>
@@ -591,7 +589,7 @@
                             android:id="@+id/imageView11"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_marginRight="16dp"
                             app:srcCompat="@drawable/btn_4" />
 
                         <TextView
@@ -600,7 +598,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="10"
                             android:padding="2dp"
-                            android:text="Hamid zibouche" />
+                            android:text="Blois, France" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -613,16 +611,16 @@
                             android:id="@+id/imageView12"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_marginRight="16dp"
                             app:srcCompat="@drawable/btn_4" />
 
                         <TextView
                             android:id="@+id/numeroTel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:padding="2dp"
-                            android:text="Hamid zibouche" />
+                            android:background="@drawable/appeler_background2"
+                            android:padding="4dp"
+                            android:text="+33763764182" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -635,16 +633,18 @@
                             android:id="@+id/imageView13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_marginRight="16dp"
                             app:srcCompat="@drawable/btn_4" />
 
                         <TextView
                             android:id="@+id/messageContact"
-                            android:layout_width="wrap_content"
+                            android:layout_width="99dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:padding="2dp"
-                            android:text="Hamid zibouche" />
+                            android:background="@drawable/message_background"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:text="Message"
+                            android:textColor="@color/white" />
                     </LinearLayout>
                 </LinearLayout>
 

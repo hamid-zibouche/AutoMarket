@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapterPopular;
     private RecyclerView recyclerViewPopular1;
     private DatabaseHandler db;
+
+
 
 
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
@@ -119,6 +122,13 @@ public class MainActivity extends AppCompatActivity {
         String langue =prefs.getString("Ma lang", "");
         setLocale(langue);
 
+    }
+
+
+    // Méthode pour vérifier si l'utilisateur est déjà connecté
+    private boolean isLoggedIn() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        return sharedPreferences.contains(Utils.KEY_ID);
     }
 
 
@@ -298,8 +308,16 @@ public class MainActivity extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
+                // Vérifier si l'utilisateur est connecté
+                if (isLoggedIn()) {
+                    // Ouvrir la page de profil
+                    Intent intent = new Intent(MainActivity.this, Profile.class);
+                    startActivity(intent);
+                } else {
+                    // Rediriger vers l'écran de connexion
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

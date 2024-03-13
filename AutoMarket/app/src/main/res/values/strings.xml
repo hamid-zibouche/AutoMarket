@@ -17,6 +17,7 @@
     <string name="email_field_description">Champ d\'adresse e-mail éditable</string>
     <string name="todoo">TODO</string>
     <string name="changer_de_langue">Changer de langue</string>
+    <string name="d_connexion">Déconnexion</string>
 
 
 </resources>

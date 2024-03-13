@@ -228,8 +228,18 @@ public class MainActivity extends AppCompatActivity {
         favoris.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Favoris.class);
-                startActivity(intent);
+
+
+                if (isLoggedIn()) {
+                    Intent intent = new Intent(MainActivity.this, Favoris.class);
+                    startActivity(intent);
+                } else {
+                    // Rediriger vers l'écran de connexion
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+
+
             }
         });
     }
@@ -240,8 +250,17 @@ public class MainActivity extends AppCompatActivity {
         annonce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddAnnonce.class);
-                startActivity(intent);
+
+
+
+                if (isLoggedIn()) {
+                    Intent intent = new Intent(MainActivity.this, AddAnnonce.class);
+                    startActivity(intent);
+                } else {
+                    // Rediriger vers l'écran de connexion
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }

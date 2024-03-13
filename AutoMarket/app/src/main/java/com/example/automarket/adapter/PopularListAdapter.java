@@ -7,13 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
+import com.example.automarket.Controller.DatabaseHandler;
 import com.example.automarket.DetailActivity;
+import com.example.automarket.MainActivity;
 import com.example.automarket.R;
 import com.example.automarket.domain.PopularDomain;
 
@@ -26,25 +29,67 @@ public class PopularListAdapter extends RecyclerView.Adapter<PopularListAdapter.
 
     Context context;
 
-    public PopularListAdapter(ArrayList<PopularDomain> items) {
+    private DatabaseHandler db;
+
+
+    public PopularListAdapter(ArrayList<PopularDomain> items, DatabaseHandler db,Context context) {
         this.items = items;
+        this.db = db;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public PopularListAdapter.Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_pop_list,parent,false);
-        context= parent.getContext();
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_pop_list, parent, false);
+        final Viewholder holder = new Viewholder(inflate);
 
-        return new Viewholder(inflate);
+        // Trouver les vues à l'intérieur de l'élément de vue
+        TextView appeler = holder.itemView.findViewById(R.id.appeler_popular);
+        TextView message = holder.itemView.findViewById(R.id.message_popular);
 
+        appeler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Accès à l'élément de données associé à cet élément de vue
+                int position = holder.getAdapterPosition();
+                PopularDomain item = items.get(position);
+
+                // Faire ce que vous devez faire lors du clic sur le bouton "Appeler"
+                // Par exemple, vous pouvez démarrer une activité d'appel téléphonique
+                // Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                // callIntent.setData(Uri.parse("tel:" + item.getPhoneNumber()));
+                // context.startActivity(callIntent);
+                Toast.makeText(context, "Appeler: " + item.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Accès à l'élément de données associé à cet élément de vue
+                int position = holder.getAdapterPosition();
+                PopularDomain item = items.get(position);
+
+                // Faire ce que vous devez faire lors du clic sur le bouton "Appeler"
+                // Par exemple, vous pouvez démarrer une activité d'appel téléphonique
+                // Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                // callIntent.setData(Uri.parse("tel:" + item.getPhoneNumber()));
+                // context.startActivity(callIntent);
+                Toast.makeText(context, "Message: " + item.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return holder;
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull PopularListAdapter.Viewholder holder, int position) {
         holder.titleTxt.setText(items.get(position).getTitle());
         holder.feeTxt.setText(String.valueOf(items.get(position).getPrice())+"€"); // Convert int to String
-        holder.scoreTxt.setText(String.valueOf(items.get(position).getScore()));
+        holder.scoreTxt.setText(String.valueOf(items.get(position).getNbrVue()));
+
 
         int drawableResourceId = holder.itemView.getResources().getIdentifier(items.get(position).getPicUrl(),
             "drawable", holder.itemView.getContext().getPackageName());
@@ -56,8 +101,10 @@ public class PopularListAdapter extends RecyclerView.Adapter<PopularListAdapter.
 
         @Override
         public void onClick(View v) {
+
             Intent intent = new Intent(holder.itemView.getContext(), DetailActivity.class);
-            intent.putExtra("object",items.get(position));
+            intent.putExtra("objet",items.get(position).getAnnonce());
+            db.addVue(items.get(position).getAnnonce());
             holder.itemView.getContext().startActivity(intent);
         }
     });

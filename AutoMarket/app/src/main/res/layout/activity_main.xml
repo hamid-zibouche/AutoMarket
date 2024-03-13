@@ -298,16 +298,17 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
-            <LinearLayout
-                android:id="@+id/vh"
-                android:layout_width="wrap_content"
+
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"/>
+                 />
 
 
+             </LinearLayout>
 
-        </LinearLayout>
+
     </ScrollView>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

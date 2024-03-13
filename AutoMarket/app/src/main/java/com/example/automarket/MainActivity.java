@@ -28,6 +28,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,9 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView.Adapter adapterPopular;
     private RecyclerView recyclerViewPopular1;
-    private DatabaseHandler db;
-
-
+    private DatabaseHandler db = new DatabaseHandler(this);
 
 
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
@@ -74,10 +75,12 @@ public class MainActivity extends AppCompatActivity {
 
         checkStoragePermission();
         initRecyclerView();
-        initAllVehicules();
+
         favoris();
         annonce();
         profile();
+
+        replaceFragment(new VehiculesFragment());
     }
 
     private void showChangeLangueDialog() {
@@ -134,30 +137,49 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void initRecyclerView() {
-        ArrayList<PopularDomain> items = new ArrayList<>();
-        items.add(new PopularDomain("peugout 406", "", "vehicule", 15, 15, 500, 500));
-        items.add(new PopularDomain("Mercedes", "", "vehicule2", 15, 15, 500, 500));
-        items.add(new PopularDomain("BMW", "", "vehicule3", 15, 15, 500, 500));
-        items.add(new PopularDomain("peugout 406", "", "vehicule", 15, 15, 500, 500));
-        items.add(new PopularDomain("Mercedes", "", "vehicule2", 15, 15, 500, 500));
-        items.add(new PopularDomain("BMW", "", "vehicule3", 15, 15, 500, 500));
-        items.add(new PopularDomain("peugout 406", "", "vehicule", 15, 15, 500, 500));
-        items.add(new PopularDomain("Mercedes", "", "vehicule2", 15, 15, 500, 500));
-        items.add(new PopularDomain("BMW", "", "vehicule3", 15, 15, 500, 500));
+        try {
+            List<Annonce> popularAnnonces = db.getPopularAnnonces();
 
-        recyclerViewPopular1 = findViewById(R.id.view1);
-        recyclerViewPopular1.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+            if (popularAnnonces.isEmpty()) {
+                // Si la liste est vide, afficher un message à l'utilisateur
+                // Vous pouvez utiliser un TextView ou un Toast pour afficher le message
+                // Par exemple, avec un Toast :
+                Toast.makeText(this, "Aucune annonce populaire à afficher", Toast.LENGTH_SHORT).show();
+                return; // Sortir de la méthode car il n'y a rien à afficher
+            }
 
-        adapterPopular = new PopularListAdapter(items);
-        recyclerViewPopular1.setAdapter(adapterPopular);
+            // Créer une liste d'items pour l'adaptateur
+            ArrayList<PopularDomain> items = new ArrayList<>();
+            for (Annonce annonce : popularAnnonces) {
+                PopularDomain popularDomain = new PopularDomain(
+                        annonce,
+                        annonce.getMarque()+ " " + annonce.getModele()+ " " +annonce.getAnnee(),
+                        "vehicule",
+                        annonce.getNbrVue(),
+                        annonce.getPrix()
+                );
+                items.add(popularDomain);
+            }
+
+            recyclerViewPopular1 = findViewById(R.id.view1);
+            recyclerViewPopular1.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+            adapterPopular = new PopularListAdapter(items,db,MainActivity.this);
+            recyclerViewPopular1.setAdapter(adapterPopular);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Afficher un message d'erreur ou effectuer toute autre action nécessaire en cas d'exception
+            Toast.makeText(this, "Une erreur s'est produite lors du chargement des annonces populaires.", Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     @Override
     protected void onResume() {
         super.onResume();
 
-
-        initAllVehicules(); // Actualiser la liste des annonces lors de la reprise de MainActivity
+        initRecyclerView();
+        replaceFragment(new VehiculesFragment()); // Actualiser la liste des annonces lors de la reprise de MainActivity
     }
 
     private void checkStoragePermission() {
@@ -171,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
                     MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
         } else {
             // Permission already granted
-            initAllVehicules();
+            replaceFragment(new VehiculesFragment());
         }
     }
 
@@ -183,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission granted, proceed with your code
-                initAllVehicules();
+                replaceFragment(new VehiculesFragment());
             } else {
                 // Permission denied, show a message or handle it gracefully
                 Toast.makeText(this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
@@ -193,89 +215,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void initAllVehicules() {
-
-        db = new DatabaseHandler(this);
-
-        List<Annonce> annonces = db.getAllAnnonces();
-
-        LinearLayout vh = findViewById(R.id.vh);
-        vh.removeAllViews(); // Supprimer toutes les vues précédentes avant d'ajouter les nouvelles annonces
-
-        for (Annonce annonce : annonces) {
-            View itemView = getLayoutInflater().inflate(R.layout.list_vehicules, null);
-
-            TextView marque = itemView.findViewById(R.id.marque);
-            TextView model = itemView.findViewById(R.id.model);
-            TextView annee = itemView.findViewById(R.id.annee);
-            TextView priceTextView = itemView.findViewById(R.id.feetxt);
-            ImageView photo = itemView.findViewById(R.id.pic);
-
-            TextView kelo = itemView.findViewById(R.id.kelo);
-            TextView carburant = itemView.findViewById(R.id.carburant);
-            TextView moteur = itemView.findViewById(R.id.moteur);
-            TextView boite = itemView.findViewById(R.id.boite);
-            TextView adresse = itemView.findViewById(R.id.adresse);
-            TextView time = itemView.findViewById(R.id.time);
-
-            marque.setText(annonce.getMarque());
-            model.setText(annonce.getModele());
-            annee.setText(String.valueOf(annonce.getAnnee()));
-            priceTextView.setText(String.valueOf(annonce.getPrix()) + "€");
-            kelo.setText(String.valueOf(annonce.getKilometrage()) + "KM");
-            carburant.setText(annonce.getEnergie());
-            moteur.setText(annonce.getMoteur());
-            boite.setText(annonce.getBoite());
-            adresse.setText(annonce.getAdresse());
-            time.setText(annonce.getDateCreation());
-
-            Log.d("image", annonce.getPhotoUrl());
-            // Charger l'image à partir de l'URI en utilisant Glide
-            if (annonce.getPhotoUrl() != null) {
-                Glide.with(this)
-                        .load(Uri.parse(annonce.getPhotoUrl()))
-                        .placeholder(R.drawable.nocar) // Image de placeholder
-                        .error(R.drawable.nocar) // Image à afficher en cas d'erreur
-                        .into(photo);
-            } else {
-                // Si l'URI est null, vous pouvez afficher une image par défaut
-                photo.setImageResource(R.drawable.nocar);
-            }
-
-            //methode d'appelle
-            TextView appeler = itemView.findViewById(R.id.appeler);
-            appeler.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, "APPELER", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            //methode de message
-            TextView message = itemView.findViewById(R.id.message);
-            message.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, "MESSAGE", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            // Ajouter un OnClickListener à chaque itemView
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Lorsque l'utilisateur clique, ouvrir la DetailView avec les données de l'élément
-                    Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                    intent.putExtra("title", annonce.getMarque());
-                    intent.putExtra("price", annonce.getPrix());
-                    intent.putExtra("objet", annonce);
-                    // Ajoutez d'autres données si nécessaire
-                    startActivity(intent);
-                }
-            });
-
-            vh.addView(itemView);
-        }
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.commit();
     }
 
     public void favoris() {

@@ -43,7 +43,7 @@ public class ListAdapter extends ArrayAdapter<PopularDomain> {
         price.setText(String.valueOf(currentDomain.getPrice()) + "€");
 
         TextView scoreTxt = listItem.findViewById(R.id.scorText);
-        scoreTxt.setText(String.valueOf(currentDomain.getScore()));
+        scoreTxt.setText(String.valueOf(currentDomain.getNbrVue()));
 
 
 

@@ -18,6 +18,8 @@
     <string name="todoo">TODO</string>
     <string name="changer_de_langue">Changer de langue</string>
     <string name="d_connexion">Déconnexion</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

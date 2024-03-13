@@ -29,6 +29,7 @@ public class Utils {
     public static final String KEY_COMMENTAIRE = "commentaire";
     public static final String KEY_DATE = "dateCreation";
     public static final String KEY_HEURE = "heureCreation";
+    public static final String KEY_NBRVUE = "nbrVue";
 
     public static final int DEFAULT_USER_ID = 0;
 }

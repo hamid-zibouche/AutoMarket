@@ -25,7 +25,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String CREATE_USERS_TABLE = "CREATE TABLE "+ Utils.TABLE_USERS+" ("+
-                Utils.KEY_ID+" INTEGER PRIMARY KEY,"+
+                Utils.KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 Utils.KEY_USERNAME+" TEXT, "+
                 Utils.KEY_EMAIL+" TEXT, "+
                 Utils.KEY_PHONE+" TEXT, "+
@@ -34,7 +34,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_USERS_TABLE);
 
         String CREATE_ANNONCE_TABLE = "CREATE TABLE " + Utils.TABLE_ANNONCE + "(" +
-                Utils.KEY_ID + " INTEGER PRIMARY KEY," +
+                Utils.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 Utils.KEY_USER_ID + " INTEGER," +
                 Utils.KEY_MARQUE + " TEXT," +
                 Utils.KEY_MODELE + " TEXT," +
@@ -48,7 +48,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 Utils.KEY_PHOTO_URL + " TEXT," +
                 Utils.KEY_COMMENTAIRE + " TEXT," +
                 Utils.KEY_ADRESSE + " TEXT," +
-                Utils.KEY_DATE + " TEXT" +")";
+                Utils.KEY_DATE + " TEXT,"+
+                Utils.KEY_NBRVUE + " INTEGER DEFAULT 0" + ")";
 
         db.execSQL(CREATE_ANNONCE_TABLE);
 
@@ -172,6 +173,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
+    public void addVue(Annonce annonce) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        int nouveauNombreDeVues = annonce.getNbrVue() + 1; // Augmente le nombre de vues de 1
+
+        // Met à jour la colonne KEY_NBRVUE avec le nouveau nombre de vues
+        values.put(Utils.KEY_NBRVUE, nouveauNombreDeVues);
+
+        // Utilise la méthode update pour mettre à jour la ligne correspondant à l'ID de l'annonce
+        database.update(Utils.TABLE_ANNONCE, values, Utils.KEY_ID + "=?",
+                new String[]{String.valueOf(annonce.getId())});
+
+        // Ferme la base de données après l'opération
+        database.close();
+    }
+
     public void addAnnonce(Annonce annonce, int userId) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -241,7 +259,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 annonce.setPrix(cursor.getDouble(10)); // 10 est l'index de la colonne PRIX
                 annonce.setPhotoUrl(cursor.getString(11)); // 11 est l'index de la colonne PHOTO_URL
                 annonce.setCommentaire(cursor.getString(12)); // 12 est l'index de la colonne COMMENTAIRE
-                annonce.setAdresse(cursor.getString(13)); // 13 est l'index de la colonne ADRESSE
+                annonce.setAdresse(cursor.getString(13));
+                annonce.setDateCreation(cursor.getString(14));
+                annonce.setNbrVue(cursor.getInt(15));
 
                 annonceList.add(annonce);
             } while (cursor.moveToNext());
@@ -277,6 +297,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 annonce.setCommentaire(cursor.getString(12)); // 12 est l'index de la colonne COMMENTAIRE
                 annonce.setAdresse(cursor.getString(13)); // 13 est l'index de la colonne ADRESSE
                 annonce.setDateCreation(cursor.getString(14));
+                annonce.setNbrVue(cursor.getInt(15));//
 
                 annonceList.add(annonce);
             } while (cursor.moveToNext());
@@ -286,5 +307,47 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         database.close();
         return annonceList;
     }
+
+    public List<Annonce> getPopularAnnonces() {
+        List<Annonce> popularAnnonces = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM " + Utils.TABLE_ANNONCE +
+                " ORDER BY " + Utils.KEY_NBRVUE + " DESC"; // Tri par nombre de vues décroissant
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // Parcourir le curseur pour extraire les annonces
+        if (cursor.moveToFirst()) {
+            do {
+                Annonce annonce = new Annonce();
+                annonce.setId(cursor.getInt(0)); // 0 est l'index de la colonne ID
+                annonce.setUserId(cursor.getInt(1)); // 1 est l'index de la colonne USER_ID
+                annonce.setMarque(cursor.getString(2)); // 2 est l'index de la colonne MARQUE
+                annonce.setModele(cursor.getString(3)); // 3 est l'index de la colonne MODELE
+                annonce.setBoite(cursor.getString(4)); // 4 est l'index de la colonne BOITE
+                annonce.setEnergie(cursor.getString(5)); // 5 est l'index de la colonne ENERGIE
+                annonce.setMoteur(cursor.getString(6)); // 6 est l'index de la colonne MOTEUR
+                annonce.setKilometrage(cursor.getInt(7)); // 7 est l'index de la colonne KILOMETRAGE
+                annonce.setCouleur(cursor.getString(8)); // 8 est l'index de la colonne COULEUR
+                annonce.setAnnee(cursor.getInt(9)); // 9 est l'index de la colonne ANNEE
+                annonce.setPrix(cursor.getDouble(10)); // 10 est l'index de la colonne PRIX
+                annonce.setPhotoUrl(cursor.getString(11)); // 11 est l'index de la colonne PHOTO_URL
+                annonce.setCommentaire(cursor.getString(12)); // 12 est l'index de la colonne COMMENTAIRE
+                annonce.setAdresse(cursor.getString(13)); // 13 est l'index de la colonne ADRESSE
+                annonce.setDateCreation(cursor.getString(14));
+                annonce.setNbrVue(cursor.getInt(15));//
+
+                popularAnnonces.add(annonce);
+            } while (cursor.moveToNext());
+        }
+
+        // Fermer le curseur et la base de données
+        cursor.close();
+        db.close();
+
+        return popularAnnonces;
+    }
+
 
 }

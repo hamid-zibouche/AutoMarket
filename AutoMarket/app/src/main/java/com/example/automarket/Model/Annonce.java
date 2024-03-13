@@ -19,6 +19,8 @@ public class Annonce implements Serializable {
     private String commentaire;
     private String adresse; // Adresse de l'annonce
 
+    private int nbrVue;
+
     private String dateCreation; // Heure de création de l'annonce
     public Annonce() {
     }
@@ -164,9 +166,13 @@ public class Annonce implements Serializable {
         this.dateCreation = dateCreation;
     }
 
+    public int getNbrVue() {
+        return nbrVue;
+    }
 
-
-
+    public void setNbrVue(int nbrVue) {
+        this.nbrVue = nbrVue;
+    }
 
     @Override
     public String toString() {

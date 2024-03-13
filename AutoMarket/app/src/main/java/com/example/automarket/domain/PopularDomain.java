@@ -1,25 +1,26 @@
 package com.example.automarket.domain;
 
+import com.example.automarket.Model.Annonce;
+
 import java.io.Serializable;
 
 public class PopularDomain implements Serializable {
     private String title;
-    private String description;
+
     private String picUrl;
-    private int review;
-    private double score;
-    private int numbreincart;
+
+
+    private int nbrVue;
 
     private double price;
+    private Annonce annonce;
 
-    public PopularDomain(String title, String description, String picUrl, int review, double score, int numbreincart, double price) {
+    public PopularDomain(Annonce annonce , String title, String picUrl, int nbrVue, double price) {
+        this.annonce = annonce;
         this.title = title;
-        this.description = description;
         this.picUrl = picUrl;
-        this.review = review;
-        this.score = score;
-        this.numbreincart = numbreincart;
         this.price = price;
+        this.nbrVue =nbrVue;
     }
 
     public double getPrice() {
@@ -33,12 +34,13 @@ public class PopularDomain implements Serializable {
     public PopularDomain() {
     }
 
-    public String getDescription() {
-        return description;
+
+    public Annonce getAnnonce() {
+        return annonce;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAnnonce(Annonce annonce) {
+        this.annonce = annonce;
     }
 
     public String getPicUrl() {
@@ -49,21 +51,8 @@ public class PopularDomain implements Serializable {
         this.picUrl = picUrl;
     }
 
-    public int getReview() {
-        return review;
-    }
 
-    public void setReview(int review) {
-        this.review = review;
-    }
 
-    public double getScore() {
-        return score;
-    }
-
-    public void setScore(double score) {
-        this.score = score;
-    }
 
     public String getTitle() {
         return title;
@@ -73,11 +62,11 @@ public class PopularDomain implements Serializable {
         this.title = title;
     }
 
-    public int getNumbreincart() {
-        return numbreincart;
+    public int getNbrVue() {
+        return nbrVue;
     }
 
-    public void setNumbreincart(int numbreincart) {
-        this.numbreincart = numbreincart;
+    public void setNbrVue(int nbrVue) {
+        this.nbrVue = nbrVue;
     }
 }

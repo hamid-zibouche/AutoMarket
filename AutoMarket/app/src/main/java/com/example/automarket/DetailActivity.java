@@ -43,7 +43,6 @@ public class DetailActivity extends AppCompatActivity {
 
 
             titre.setText(objet.getMarque() + " "+objet.getModele()+" "+String.valueOf(objet.getAnnee()));
-
             prix.setText(String.valueOf(objet.getPrix()) + " €");
             prixTitre.setText(String.valueOf(objet.getPrix()) + " €");
             date.setText(objet.getDateCreation());

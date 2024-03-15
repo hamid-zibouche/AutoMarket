@@ -1,5 +1,7 @@
 package com.example.automarket;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.automarket.Controller.DatabaseHandler;
 import com.example.automarket.Model.Annonce;
+import com.example.automarket.Model.User;
 import com.example.automarket.R;
 
 import java.util.List;
@@ -43,7 +46,6 @@ public class VehiculesFragment extends Fragment {
         LinearLayout vh = view.findViewById(R.id.vh);
 
 
-        // Le reste de votre logique ici...
         for (Annonce annonce : annonces) {
             View itemView = getLayoutInflater().inflate(R.layout.list_vehicules, vh, false);
 
@@ -73,6 +75,39 @@ public class VehiculesFragment extends Fragment {
             time.setText(annonce.getDateCreation());
             nbrvue.setText(String.valueOf(annonce.getNbrVue()));
 
+
+            try {
+                int userId = annonce.getUserId();
+                User userAnnonce = db.getUser(userId);
+
+                //methode d'appelle
+                LinearLayout appeler = itemView.findViewById(R.id.appeler);
+                appeler.setOnClickListener(v -> {
+                    String phoneNumber = userAnnonce.getPhone(); // Le numéro de téléphone du client
+                    Intent callServiceIntent = new Intent(requireContext(), CallService.class);
+                    callServiceIntent.putExtra("phone_number", phoneNumber);
+                    requireContext().startService(callServiceIntent);
+                });
+
+
+                //methode de message
+                LinearLayout message = itemView.findViewById(R.id.message);
+                message.setOnClickListener(v -> {
+                    String phoneNumber = userAnnonce.getPhone(); // Le numéro de téléphone du client
+                    String messageText = "Bonjour, je suis intéressé par votre annonce pour le Vehicule "+annonce.getMarque()+" "+annonce.getModele()+" "+annonce.getAnnee()+"."; // Le message à envoyer
+                    Intent messageServiceIntent = new Intent(requireContext(), MessageService.class);
+                    messageServiceIntent.putExtra("phone_number", phoneNumber);
+                    messageServiceIntent.putExtra("message", messageText);
+                    requireContext().startService(messageServiceIntent);
+                });
+
+            } catch (Exception e) {
+                // Gérer l'exception, par exemple en affichant un message dans les logs
+                Log.e(TAG, "Error getting user from database", e);
+                // Vous pouvez aussi afficher un message à l'utilisateur si nécessaire
+            }
+
+
             Log.d("image", annonce.getPhotoUrl());
             // Charger l'image à partir de l'URI en utilisant Glide
             if (annonce.getPhotoUrl() != null) {
@@ -86,13 +121,7 @@ public class VehiculesFragment extends Fragment {
                 photo.setImageResource(R.drawable.nocar);
             }
 
-            //methode d'appelle
-            LinearLayout appeler = itemView.findViewById(R.id.appeler);
-            appeler.setOnClickListener(v -> Toast.makeText(requireContext(), "APPELER", Toast.LENGTH_SHORT).show());
 
-            //methode de message
-            LinearLayout message = itemView.findViewById(R.id.message);
-            message.setOnClickListener(v -> Toast.makeText(requireContext(), "MESSAGE", Toast.LENGTH_SHORT).show());
 
             // Ajouter un OnClickListener à chaque itemView
             itemView.setOnClickListener(v -> {

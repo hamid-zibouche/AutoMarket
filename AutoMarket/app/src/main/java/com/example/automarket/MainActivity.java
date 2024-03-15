@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        afficher();
         checkStoragePermission();
         initRecyclerView();
 
@@ -81,6 +82,26 @@ public class MainActivity extends AppCompatActivity {
         profile();
 
         replaceFragment(new VehiculesFragment());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        afficher();
+        initRecyclerView();
+        replaceFragment(new VehiculesFragment()); // Actualiser la liste des annonces lors de la reprise de MainActivity
+    }
+
+    private void afficher(){
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+
+        if(sharedPreferences.contains(Utils.KEY_USERNAME)) {
+            TextView username = findViewById(R.id.usernameMain);
+            username.setText(sharedPreferences.getString(Utils.KEY_USERNAME, "GUEST"));
+        }else{
+            TextView username = findViewById(R.id.usernameMain);
+            username.setText("Guest");
+        }
     }
 
     private void showChangeLangueDialog() {
@@ -174,13 +195,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        initRecyclerView();
-        replaceFragment(new VehiculesFragment()); // Actualiser la liste des annonces lors de la reprise de MainActivity
-    }
 
     private void checkStoragePermission() {
         if (ContextCompat.checkSelfPermission(this,

@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -193,11 +194,13 @@ public class AddAnnonce extends AppCompatActivity {
                             // Utiliser l'image par défaut si aucune image n'a été sélectionnée
                             imageUriStr = convertBitmapToBase64(defaultImageBitmap);
                         }
+                        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                        int userId = sharedPreferences.getInt(Utils.KEY_ID,0);
 
                         Annonce annonce = new Annonce(marque, modele, boite, energie, moteur, kilometrage,
-                                couleur, annee, prix, imageUriStr, commentaire, adresse, dateStr);
+                                couleur, annee, prix, imageUriStr, commentaire, adresse, dateStr,userId);
 
-                        dbHandler.addAnnonce(annonce, Utils.DEFAULT_USER_ID);
+                        dbHandler.addAnnonce(annonce);
 
                         Toast.makeText(AddAnnonce.this, "Annonce ajoutée avec succès", Toast.LENGTH_SHORT).show();
 

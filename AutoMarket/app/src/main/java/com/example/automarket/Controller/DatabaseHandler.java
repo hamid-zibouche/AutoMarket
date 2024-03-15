@@ -124,13 +124,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-
-
-
-
     public User getUser(int id){
         SQLiteDatabase database = this.getReadableDatabase();
-        Cursor cursor = database.query(Utils.TABLE_ANNONCE,
+        Cursor cursor = database.query(Utils.TABLE_USERS,
                 new String[]{Utils.KEY_ID,Utils.KEY_USERNAME,
                         Utils.KEY_EMAIL,Utils.KEY_PHONE,
                         Utils.KEY_PASSWORD},
@@ -138,10 +134,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 null,null,null,null);
         if(cursor != null){
             cursor.moveToFirst();
-            User user = new User(Integer.parseInt(cursor.getString(0)),
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getString(3),cursor.getString(4));
+            User user =new User();
+            user.setId(Integer.parseInt(cursor.getString(0)));
+            user.setUsername(cursor.getString(1));
+            user.setEmail(cursor.getString(2));
+            user.setPhone(cursor.getString(3));
+            user.setPassword(cursor.getString(4));
             return user;
         }
         else{
@@ -190,11 +188,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         database.close();
     }
 
-    public void addAnnonce(Annonce annonce, int userId) {
+    public void addAnnonce(Annonce annonce) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(Utils.KEY_USER_ID, userId);
+        values.put(Utils.KEY_USER_ID, annonce.getUserId());
         values.put(Utils.KEY_MARQUE, annonce.getMarque());
         values.put(Utils.KEY_MODELE, annonce.getModele());
         values.put(Utils.KEY_BOITE, annonce.getBoite());

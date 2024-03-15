@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,6 +69,10 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString(Utils.KEY_USERNAME, user.getUsername());
                         editor.putString(Utils.KEY_EMAIL, user.getEmail());
                         editor.apply();
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+
+                        Log.d("iduser",String.valueOf(sharedPreferences.getInt(Utils.KEY_ID,0)));
 
                         // Rediriger vers la page de profil après la connexion réussie
                         redirectToMainActivity();

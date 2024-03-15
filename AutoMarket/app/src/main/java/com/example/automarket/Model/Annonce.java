@@ -27,7 +27,7 @@ public class Annonce implements Serializable {
 
     public Annonce(String marque, String modele, String boite, String energie, String moteur,
                    int kilometrage, String couleur, int annee, double prix, String photoUrl, String commentaire,
-                   String adresse, String dateCreation) {
+                   String adresse, String dateCreation,int userId) {
 
         this.marque = marque;
         this.modele = modele;
@@ -42,6 +42,7 @@ public class Annonce implements Serializable {
         this.commentaire = commentaire;
         this.adresse = adresse;
         this.dateCreation = dateCreation;
+        this.userId=userId;
     }
 
     // Getters and Setters

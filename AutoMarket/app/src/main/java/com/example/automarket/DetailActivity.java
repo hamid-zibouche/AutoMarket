@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +20,7 @@ import com.example.automarket.domain.PopularDomain;
 
 public class DetailActivity extends AppCompatActivity {
 
-
+    private DatabaseHandler db = new DatabaseHandler(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,13 +52,40 @@ public class DetailActivity extends AppCompatActivity {
             TextView usernameAnnonce = findViewById(R.id.nomprenom);
             TextView adresseUser = findViewById(R.id.adresseUser);
             TextView phoneUser = findViewById(R.id.numeroTel);
+            ImageView retour = findViewById(R.id.retourDetail);
+
+            retour.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+
+            Button detail_appeler = findViewById(R.id.datail_appeler);
+
+            int userId = objet.getUserId();
+            User userAnnonce = db.getUser(userId);
+
+            detail_appeler.setOnClickListener(v -> {
+                String phoneNumber = userAnnonce.getPhone(); // Le numéro de téléphone du client
+                Intent callServiceIntent = new Intent(this, CallService.class);
+                callServiceIntent.putExtra("phone_number", phoneNumber);
+                this.startService(callServiceIntent);
+            });
+
+            Button detail_message = findViewById(R.id.datail_message);
+            detail_message.setOnClickListener(v -> {
+                String phoneNumber = userAnnonce.getPhone(); // Le numéro de téléphone du client
+                String messageText = "Bonjour, je suis intéressé par votre annonce pour le Vehicule "+objet.getMarque()+" "+objet.getModele()+" "+objet.getAnnee()+"."; // Le message à envoyer
+                Intent messageServiceIntent = new Intent(this, MessageService.class);
+                messageServiceIntent.putExtra("phone_number", phoneNumber);
+                messageServiceIntent.putExtra("message", messageText);
+                this.startService(messageServiceIntent);
+            });
 
 
-
-            DatabaseHandler db = new DatabaseHandler(this);
             Log.d("console",String.valueOf(objet.getUserId()));
             try {
-                User userAnnonce = db.getUser(objet.getUserId());
 
                 if (userAnnonce != null) {
                     usernameAnnonce.setText(String.valueOf(userAnnonce.getUsername()));

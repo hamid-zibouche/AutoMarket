@@ -90,6 +90,28 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
+    // Dans la classe DatabaseHandler
+
+    public boolean updateUser(User user) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(Utils.KEY_USERNAME, user.getUsername());
+        values.put(Utils.KEY_EMAIL, user.getEmail());
+        values.put(Utils.KEY_PHONE, user.getPhone());
+
+        // Mettre à jour la ligne dans la table des utilisateurs avec l'ID de l'utilisateur
+        int rowsAffected = database.update(Utils.TABLE_USERS, values, Utils.KEY_ID + "=?",
+                new String[]{String.valueOf(user.getId())});
+
+        database.close();
+
+        // Vérifier si la mise à jour a réussi
+        return rowsAffected > 0;
+    }
+
+
+
     public User checkUsernamePassword(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         User user = null;

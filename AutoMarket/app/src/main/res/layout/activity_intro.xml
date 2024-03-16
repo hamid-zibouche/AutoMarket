@@ -94,7 +94,7 @@
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rgister"
+            android:text="Deconnecter"
             android:textColor="#05ACA3"
             android:textSize="24sp"
             android:textStyle="bold"

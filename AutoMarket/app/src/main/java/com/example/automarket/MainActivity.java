@@ -58,20 +58,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadLocale();
         setContentView(R.layout.activity_main);
 
 
 
-        Button changerLangue = findViewById(R.id.btnChanerlangue);
 
-
-        changerLangue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showChangeLangueDialog();
-            }
-        });
 
         afficher();
         checkStoragePermission();
@@ -104,49 +95,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showChangeLangueDialog() {
-        final String[] listItems = {"Francais", "Anglais"};
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
-        mBuilder.setTitle("choisie une langue ...");
-        mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-        if (i == 0){
-            setLocale("fr");
-            recreate();
-        }
 
-       else  if (i == 1){
-            setLocale("en");
-            recreate();
-        }
-
-         dialogInterface.dismiss();
-
-            }
-        });
-
-        AlertDialog mDialog = mBuilder.create();
-        mDialog.show();
-    }
-
-    private void setLocale(String lang ) {
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-        SharedPreferences.Editor editor = getSharedPreferences("parameters", MODE_PRIVATE).edit();
-        editor.putString("Ma lang", lang);
-        editor.apply();
-    }
-
-    public void loadLocale(){
-        SharedPreferences prefs = getSharedPreferences("parameters", Activity.MODE_PRIVATE);
-        String langue =prefs.getString("Ma lang", "");
-        setLocale(langue);
-
-    }
 
 
     // Méthode pour vérifier si l'utilisateur est déjà connecté

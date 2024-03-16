@@ -42,5 +42,6 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("com.google.code.gson:gson:2.10")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+    implementation ("com.mikhaellopez:circularimageview:4.3.1")
 
 }

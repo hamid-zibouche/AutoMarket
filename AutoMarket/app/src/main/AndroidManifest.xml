@@ -7,8 +7,6 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -22,18 +20,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoMarket"
         tools:targetApi="31">
+        <activity
+            android:name=".updateProfile"
+            android:exported="false" />
+
         <service
             android:name=".MessageService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
         <service
             android:name=".CallService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity
-            android:name=".ConnectActivity"
-            android:exported="false" />
+
         <activity
             android:name=".registerActivity2"
             android:exported="false" />

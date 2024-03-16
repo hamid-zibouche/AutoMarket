@@ -1,13 +1,14 @@
 package com.example.automarket;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
-public class ConnectActivity extends AppCompatActivity {
+public class updateProfile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_connect);
+        setContentView(R.layout.activity_update_profile);
     }
 }

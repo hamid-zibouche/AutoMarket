@@ -20,126 +20,130 @@
       app:layout_constraintTop_toTopOf="parent"
       tools:ignore="MissingConstraints">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-
-      <TextView
-          android:id="@+id/inscription"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="18dp"
-          android:gravity="center"
-          android:text="INSCRIPTION"
-          android:textColor="@color/black"
-          android:textSize="35sp"> </TextView>
-
-      <TextView
-          android:id="@+id/error"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="15dp"
-          android:layout_marginTop="15dp"
-          android:layout_marginRight="15dp"
-          android:gravity="center"
-          android:text="@string/error"
-          android:textColor="#ff0000"
-          android:textSize="20sp"
-          android:visibility="gone"> </TextView>
-
-      <EditText
-          android:id="@+id/username"
-          android:layout_width="match_parent"
-          android:layout_height="60dp"
-          android:layout_marginLeft="10dp"
-          android:layout_marginTop="28dp"
-          android:layout_marginRight="10dp"
-          android:background="#f2f2f2"
-          android:hint="@string/Nom_Utilisateur"
-          android:padding="10dp"> </EditText>
-
-      <EditText
-          android:id="@+id/email"
-          android:layout_width="match_parent"
-          android:layout_height="60dp"
-          android:layout_marginLeft="10dp"
-          android:layout_marginTop="28dp"
-          android:layout_marginRight="10dp"
-          android:background="#f2f2f2"
-          android:hint="Email"
-          android:inputType="textEmailAddress"
-          android:padding="10dp"/>
-
-
-
-      <EditText
-          android:id="@+id/password"
-          android:layout_width="match_parent"
-          android:layout_height="60dp"
-          android:layout_marginLeft="10dp"
-          android:layout_marginTop="28dp"
-          android:layout_marginRight="10dp"
-          android:background="#f2f2f2"
-          android:hint="@string/Mot_de_passe"
-          android:inputType="textPassword"
-          android:padding="10dp"> </EditText>
-
-      <EditText
-          android:id="@+id/confirmpassword"
-          android:layout_width="match_parent"
-          android:layout_height="60dp"
-          android:layout_marginLeft="10dp"
-          android:layout_marginTop="28dp"
-          android:layout_marginRight="10dp"
-          android:background="#f2f2f2"
-          android:hint="@string/Confirmer_Mot_de_passe"
-          android:inputType="textPassword"
-          android:padding="10dp"> </EditText>
-
-      <EditText
-          android:id="@+id/telephone"
-          android:layout_width="match_parent"
-          android:layout_height="60dp"
-          android:layout_marginLeft="10dp"
-          android:layout_marginTop="28dp"
-          android:layout_marginRight="10dp"
-          android:background="#f2f2f2"
-          android:hint="@string/Numero_de_Telephone"
-          android:padding="10dp"> </EditText>
-
-      <TextView
-          android:id="@+id/loginRedirectText"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="28dp"
-          android:gravity="center"
-          android:text="@string/j_ai_deja_un_compte"
-          android:textColor="@color/black"
-          android:textSize="18sp"> </TextView>
+        android:layout_height="match_parent" >
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="vertical">
 
-        <Button
-            android:id="@+id/signup"
-            android:layout_width="150dp"
+
+        <TextView
+            android:id="@+id/inscription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="center"
+            android:text="INSCRIPTION"
+            android:textColor="@color/black"
+            android:textSize="35sp"></TextView>
+
+        <TextView
+            android:id="@+id/error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:text="@string/error"
+            android:textColor="#ff0000"
+            android:textSize="20sp"
+            android:visibility="gone"></TextView>
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/black"
-            android:text="@string/s_inscrire">
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginRight="10dp"
+            android:background="#f2f2f2"
+            android:hint="@string/Nom_Utilisateur"
+            android:padding="10dp"></EditText>
 
-        </Button>
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginRight="10dp"
+            android:background="#f2f2f2"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="10dp" />
+
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginRight="10dp"
+            android:background="#f2f2f2"
+            android:hint="@string/Mot_de_passe"
+            android:inputType="textPassword"
+            android:padding="10dp"></EditText>
+
+        <EditText
+            android:id="@+id/confirmpassword"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginRight="10dp"
+            android:background="#f2f2f2"
+            android:hint="@string/Confirmer_Mot_de_passe"
+            android:inputType="textPassword"
+            android:padding="10dp"></EditText>
+
+        <EditText
+            android:id="@+id/telephone"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginRight="10dp"
+            android:background="#f2f2f2"
+            android:hint="@string/Numero_de_Telephone"
+            android:padding="10dp"></EditText>
+
+        <TextView
+            android:id="@+id/loginRedirectText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:gravity="center"
+            android:text="@string/j_ai_deja_un_compte"
+            android:textColor="@color/black"
+            android:textSize="18sp"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+          <Button
+              android:id="@+id/signup"
+              android:layout_width="150dp"
+              android:layout_height="60dp"
+              android:layout_gravity="center"
+              android:layout_marginTop="10dp"
+              android:layout_marginBottom="20dp"
+              android:backgroundTint="@color/black"
+              android:text="@string/s_inscrire">
+
+          </Button>
+        </LinearLayout>
+
+
       </LinearLayout>
+    </ScrollView>
 
-
-    </LinearLayout>
   </androidx.cardview.widget.CardView>
 
   <ImageButton

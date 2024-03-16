@@ -20,83 +20,85 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-
-            <TextView
-                android:id="@+id/editprofile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:gravity="center"
-                android:text="Modifier Profile"
-                android:textColor="@color/black"
-                android:textSize="35sp"> </TextView>
-
-
-            <EditText
-                android:id="@+id/editusername"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginRight="10dp"
-                android:background="#f2f2f2"
-                android:hint="@string/Nom_Utilisateur"
-                android:padding="10dp"> </EditText>
-
-            <EditText
-                android:id="@+id/editemail"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginRight="10dp"
-                android:background="#f2f2f2"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:padding="10dp"/>
-
-
-
-
-
-            <EditText
-                android:id="@+id/edittelephone"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginRight="10dp"
-                android:background="#f2f2f2"
-                android:hint="@string/Numero_de_Telephone"
-                android:padding="10dp"> </EditText>
-
+            android:layout_height="match_parent" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/edit"
-                    android:layout_width="150dp"
+
+                <TextView
+                    android:id="@+id/editprofile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center"
+                    android:text="Modifier Profile"
+                    android:textColor="@color/black"
+                    android:textSize="35sp"></TextView>
+
+
+                <EditText
+                    android:id="@+id/editusername"
+                    android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:backgroundTint="@color/black"
-                    android:text="Modifier">
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#f2f2f2"
+                    android:hint="@string/Nom_Utilisateur"
+                    android:padding="10dp"></EditText>
 
-                </Button>
+                <EditText
+                    android:id="@+id/editemail"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#f2f2f2"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:padding="10dp" />
+
+
+                <EditText
+                    android:id="@+id/edittelephone"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#f2f2f2"
+                    android:hint="@string/Numero_de_Telephone"
+                    android:padding="10dp"></EditText>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/edit"
+                        android:layout_width="150dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:backgroundTint="@color/black"
+                        android:text="Modifier">
+
+                    </Button>
+                </LinearLayout>
+
+
             </LinearLayout>
+        </ScrollView>
 
-
-        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <ImageButton

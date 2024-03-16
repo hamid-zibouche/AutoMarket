@@ -14,9 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
+import com.example.automarket.CallService;
 import com.example.automarket.Controller.DatabaseHandler;
 import com.example.automarket.DetailActivity;
 import com.example.automarket.MainActivity;
+import com.example.automarket.MessageService;
+import com.example.automarket.Model.Annonce;
+import com.example.automarket.Model.User;
 import com.example.automarket.R;
 import com.example.automarket.domain.PopularDomain;
 
@@ -48,19 +52,22 @@ public class PopularListAdapter extends RecyclerView.Adapter<PopularListAdapter.
         TextView appeler = holder.itemView.findViewById(R.id.appeler_popular);
         TextView message = holder.itemView.findViewById(R.id.message_popular);
 
+
         appeler.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Accès à l'élément de données associé à cet élément de vue
                 int position = holder.getAdapterPosition();
                 PopularDomain item = items.get(position);
+                Annonce annonce = item.getAnnonce();
 
-                // Faire ce que vous devez faire lors du clic sur le bouton "Appeler"
-                // Par exemple, vous pouvez démarrer une activité d'appel téléphonique
-                // Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                // callIntent.setData(Uri.parse("tel:" + item.getPhoneNumber()));
-                // context.startActivity(callIntent);
-                Toast.makeText(context, "Appeler: " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                User userAnnonce = db.getUser(annonce.getUserId());
+
+                String phoneNumber = userAnnonce.getPhone(); // Le numéro de téléphone du client
+                Intent callServiceIntent = new Intent(context, CallService.class);
+                callServiceIntent.putExtra("phone_number", phoneNumber);
+                context.startService(callServiceIntent);
+
             }
         });
 
@@ -70,14 +77,18 @@ public class PopularListAdapter extends RecyclerView.Adapter<PopularListAdapter.
                 // Accès à l'élément de données associé à cet élément de vue
                 int position = holder.getAdapterPosition();
                 PopularDomain item = items.get(position);
+                Annonce annonce = item.getAnnonce();
 
-                // Faire ce que vous devez faire lors du clic sur le bouton "Appeler"
-                // Par exemple, vous pouvez démarrer une activité d'appel téléphonique
-                // Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                // callIntent.setData(Uri.parse("tel:" + item.getPhoneNumber()));
-                // context.startActivity(callIntent);
-                Toast.makeText(context, "Message: " + item.getTitle(), Toast.LENGTH_SHORT).show();
-            }
+                User userAnnonce = db.getUser(annonce.getUserId());
+
+
+                String phoneNumber = userAnnonce.getPhone(); // Le numéro de téléphone du client
+                String messageText = "Bonjour, je suis intéressé par votre annonce pour le Vehicule "+annonce.getMarque()+" "+annonce.getModele()+" "+annonce.getAnnee()+"."; // Le message à envoyer
+                Intent messageServiceIntent = new Intent(context, MessageService.class);
+                messageServiceIntent.putExtra("phone_number", phoneNumber);
+                messageServiceIntent.putExtra("message", messageText);
+                context.startService(messageServiceIntent);
+                }
         });
 
         return holder;

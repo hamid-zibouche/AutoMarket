@@ -347,5 +347,49 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return popularAnnonces;
     }
 
+    public List<Annonce> rechercheAnnonces(String rechercheText) {
+        List<Annonce> annonces = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Requête SQL pour rechercher par marque, modèle ou année
+        String query = "SELECT * FROM " + Utils.TABLE_ANNONCE + " WHERE " +
+                Utils.KEY_MARQUE + " LIKE '%" + rechercheText + "%' OR " +
+                Utils.KEY_MODELE + " LIKE '%" + rechercheText + "%' OR " +
+                Utils.KEY_ANNEE + " LIKE '%" + rechercheText + "%' " +
+                "ORDER BY " + Utils.KEY_DATE + " DESC";
+
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        // Parcourir le curseur pour récupérer les résultats de la recherche
+        if (cursor.moveToFirst()) {
+            do {
+                Annonce annonce = new Annonce();
+                annonce.setId(cursor.getInt(0)); // 0 est l'index de la colonne ID
+                annonce.setUserId(cursor.getInt(1)); // 1 est l'index de la colonne USER_ID
+                annonce.setMarque(cursor.getString(2)); // 2 est l'index de la colonne MARQUE
+                annonce.setModele(cursor.getString(3)); // 3 est l'index de la colonne MODELE
+                annonce.setBoite(cursor.getString(4)); // 4 est l'index de la colonne BOITE
+                annonce.setEnergie(cursor.getString(5)); // 5 est l'index de la colonne ENERGIE
+                annonce.setMoteur(cursor.getString(6)); // 6 est l'index de la colonne MOTEUR
+                annonce.setKilometrage(cursor.getInt(7)); // 7 est l'index de la colonne KILOMETRAGE
+                annonce.setCouleur(cursor.getString(8)); // 8 est l'index de la colonne COULEUR
+                annonce.setAnnee(cursor.getInt(9)); // 9 est l'index de la colonne ANNEE
+                annonce.setPrix(cursor.getDouble(10)); // 10 est l'index de la colonne PRIX
+                annonce.setPhotoUrl(cursor.getString(11)); // 11 est l'index de la colonne PHOTO_URL
+                annonce.setCommentaire(cursor.getString(12)); // 12 est l'index de la colonne COMMENTAIRE
+                annonce.setAdresse(cursor.getString(13)); // 13 est l'index de la colonne ADRESSE
+                annonce.setDateCreation(cursor.getString(14));
+                annonce.setNbrVue(cursor.getInt(15));//
+
+                annonces.add(annonce);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return annonces;
+    }
+
+
 
 }

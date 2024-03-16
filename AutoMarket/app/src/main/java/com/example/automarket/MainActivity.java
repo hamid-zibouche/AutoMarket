@@ -2,6 +2,7 @@ package com.example.automarket;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,8 +15,12 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -40,6 +45,8 @@ import com.example.automarket.Model.Annonce;
 import com.example.automarket.adapter.PopularListAdapter;
 import com.example.automarket.domain.PopularDomain;
 import com.example.automarket.Utils.Utils;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         afficher();
+
         checkStoragePermission();
         initRecyclerView();
 
@@ -82,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         profile();
 
         replaceFragment(new VehiculesFragment());
+        recherche();
     }
 
     @Override
@@ -102,6 +111,44 @@ public class MainActivity extends AppCompatActivity {
             TextView username = findViewById(R.id.usernameMain);
             username.setText("Guest");
         }
+    }
+
+    private void recherche() {
+        EditText rechercheEditText = findViewById(R.id.recherche);
+        rechercheEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    // L'utilisateur a appuyé sur "Done" ou "Search"
+                    String rechercheText = rechercheEditText.getText().toString().trim();
+
+                    // Vérifiez si le champ de recherche est vide
+                    if (!rechercheText.isEmpty()) {
+                        if (getSupportFragmentManager() != null) {
+                            VehiculesFragment vehiculesFragment = (VehiculesFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                            if (vehiculesFragment != null) {
+                                vehiculesFragment.searchAnnonces(rechercheText);
+                            }
+                        }
+                    } else {
+                        // Le champ de recherche est vide, vous pouvez afficher un message à l'utilisateur ou rafraîchir la liste complète
+                        if (getSupportFragmentManager() != null) {
+                            VehiculesFragment vehiculesFragment = (VehiculesFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+                            if (vehiculesFragment != null) {
+                                vehiculesFragment.exitSearchMode();
+                            }
+                        }
+                    }
+
+                    // Masquer le clavier après la recherche
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(rechercheEditText.getWindowToken(), 0);
+
+                    return true; // Indique que l'événement a été traité
+                }
+                return false;
+            }
+        });
     }
 
     private void showChangeLangueDialog() {
@@ -171,7 +218,8 @@ public class MainActivity extends AppCompatActivity {
 
             // Créer une liste d'items pour l'adaptateur
             ArrayList<PopularDomain> items = new ArrayList<>();
-            for (Annonce annonce : popularAnnonces) {
+            for (int i = 0; i < Math.min(popularAnnonces.size(), 5); i++) {
+                Annonce annonce = popularAnnonces.get(i);
                 PopularDomain popularDomain = new PopularDomain(
                         annonce,
                         annonce.getMarque()+ " " + annonce.getModele()+ " " +annonce.getAnnee(),
@@ -235,6 +283,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.fragment_container, fragment);
         transaction.commit();
     }
+
 
     public void favoris() {
         LinearLayout favoris = findViewById(R.id.favoris);

@@ -23,6 +23,7 @@
 
     <string name="accueil">Accueil</string>
     <string name="seconnecter">Se Connecter</string>
+    <string name="profile">Profile</string>
 
 
 </resources>

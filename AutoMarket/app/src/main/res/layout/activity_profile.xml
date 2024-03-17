@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        />
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -16,7 +24,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="#5CC09F">
+            android:background="@drawable/couverture">
 
             <ImageView
                 android:id="@+id/photo_user"
@@ -24,7 +32,8 @@
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp"
-                android:background="@drawable/photo_user" />
+                android:background="@drawable/profile_background"
+                android:src="@drawable/profile_user" />
 
             <TextView
                 android:id="@+id/usernames"
@@ -35,14 +44,8 @@
                 android:layout_marginTop="12dp"
                 android:text="Username"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
-
-            <ImageView
-                android:id="@+id/imageView100"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:srcCompat="@drawable/arrow" />
 
         </RelativeLayout>
 
@@ -82,7 +85,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/imageView81"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <!-- Ligne de séparation -->
@@ -100,7 +104,7 @@
                     <ImageView
                         android:id="@+id/imageView84"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/icon_email"
                         tools:ignore="MissingConstraints" />
@@ -171,7 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="choisir une langue"
+                android:text="Choisir une langue"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -184,23 +188,28 @@
 
             <Button
                 android:id="@+id/fr"
-                android:layout_width="100dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="72dp"
                 android:backgroundTint="@color/black"
+
+                android:padding="15dp"
                 android:text="FR"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3"
                 app:layout_constraintVertical_bias="0.071"
+                app:strokeColor="@color/border"
+                app:strokeWidth="3dp"
                 tools:ignore="MissingConstraints" />
 
             <Button
                 android:id="@+id/EN"
-                android:layout_width="100dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:backgroundTint="@color/black"
+                android:padding="15dp"
                 android:text="EN"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.343"
@@ -215,7 +224,7 @@
             android:id="@+id/constraintLayout4"
             android:layout_width="match_parent"
             android:layout_height="81dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="32dp">
 
@@ -223,9 +232,14 @@
             <Button
                 android:id="@+id/editProfile"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/black"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/couverture"
+                android:gravity="center"
+                android:paddingStart="50dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:text="Modifier profile"
+                app:icon="@android:drawable/ic_menu_edit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -239,16 +253,22 @@
             android:layout_width="match_parent"
             android:layout_height="81dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="32dp">
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="8dp">
 
             <!-- Bouton de déconnexion -->
             <Button
-                android:id="@+id/deconnecter"
+                android:id="@+id/deconnecter2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/black"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/couverture"
+                android:clickable="true"
+                android:paddingStart="50dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:text="Deconncter"
+                app:icon="@drawable/signout"
+                app:iconTint="@color/red"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -258,3 +278,4 @@
 
     </LinearLayout>
 </ScrollView>
+</LinearLayout>

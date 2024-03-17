@@ -18,5 +18,6 @@
     <string name="changer_de_langue">Change language</string>
     <string name="accueil">Home</string>
     <string name="seconnecter">Sign Out</string>
+    <string name="profile">Profil</string>
 
 </resources>

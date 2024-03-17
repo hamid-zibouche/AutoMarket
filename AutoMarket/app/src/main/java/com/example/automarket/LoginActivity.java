@@ -50,6 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         textView = findViewById(R.id.creercompte);
         button = findViewById(R.id.connection);
 
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

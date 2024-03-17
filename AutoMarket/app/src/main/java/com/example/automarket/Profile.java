@@ -32,15 +32,11 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        // Initialiser les vues
-        logoutButton = findViewById(R.id.deconnecter);
-        updateProfile = findViewById(R.id.editProfile);
+
         usernameTextView = findViewById(R.id.usernames);
         emailTextView = findViewById(R.id.textView85);
         phoneTextView = findViewById(R.id.textView44);
         usernametext = findViewById(R.id.textView82);
-
-
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
 
         // Récupérer les informations de l'utilisateur depuis SharedPreferences
@@ -53,8 +49,67 @@ public class Profile extends AppCompatActivity {
         usernametext.setText(username);
         emailTextView.setText(email);
         phoneTextView.setText(phone);
+        TextView titrePage = findViewById(R.id.titrePage);
 
-        // Configurer l'écouteur de clic pour le bouton de déconnexion
+
+        // Configurer l'écouteur de clic pour le bouton de déconnexion/update
+        deconnecter();
+        updateProfile();
+        retour();
+
+        titrePage.setText(R.string.profile);
+
+    }
+
+    // Méthode pour afficher une boîte de dialogue de confirmation
+    private void showConfirmationDialog(String message, DialogInterface.OnClickListener listener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message)
+                .setPositiveButton("Oui", listener)
+                .setNegativeButton("Non", null)
+                .show();
+    }
+
+    private void retour(){
+        ImageView retour = findViewById(R.id.retour);
+
+        retour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    private void deconnecter(){
+
+        TextView deconnecter = findViewById(R.id.deconnecter);
+            deconnecter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showConfirmationDialog("Voulez-vous vraiment vous déconnecter ?", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Effacer les informations de l'utilisateur des préférences partagées
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.remove(Utils.KEY_ID);
+                            editor.remove(Utils.KEY_USERNAME);
+                            editor.remove(Utils.KEY_EMAIL);
+                            editor.apply();
+
+                            Toast.makeText(Profile.this, "Vous êtes déconnecté", Toast.LENGTH_SHORT).show();
+
+                            // Rediriger l'utilisateur vers l'écran de connexion
+                            Intent intent = new Intent(Profile.this, MainActivity.class);
+                            startActivity(intent);
+                            finish(); // Optionnel : fermer l'activité de profil après la déconnexion
+                        }
+                    });
+
+                }
+            });
+
+        logoutButton = findViewById(R.id.deconnecter2);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,14 +126,19 @@ public class Profile extends AppCompatActivity {
                         Toast.makeText(Profile.this, "Vous êtes déconnecté", Toast.LENGTH_SHORT).show();
 
                         // Rediriger l'utilisateur vers l'écran de connexion
-                        Intent intent = new Intent(Profile.this, LoginActivity.class);
+                        Intent intent = new Intent(Profile.this, MainActivity.class);
                         startActivity(intent);
                         finish(); // Optionnel : fermer l'activité de profil après la déconnexion
                     }
                 });
+
             }
         });
 
+    }
+
+    private void updateProfile(){
+        updateProfile = findViewById(R.id.editProfile);
         updateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,15 +146,6 @@ public class Profile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    // Méthode pour afficher une boîte de dialogue de confirmation
-    private void showConfirmationDialog(String message, DialogInterface.OnClickListener listener) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(message)
-                .setPositiveButton("Oui", listener)
-                .setNegativeButton("Non", null)
-                .show();
     }
 
 

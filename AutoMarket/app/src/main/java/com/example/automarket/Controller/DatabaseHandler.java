@@ -53,6 +53,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_ANNONCE_TABLE);
 
+
     }
 
     @Override
@@ -83,8 +84,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor = MyDtabase.rawQuery("select * from users where username = ?", new String[]{username} );
 
         if(cursor.getCount() >0 ){
+            MyDtabase.close();
     return  true;
         }else{
+            MyDtabase.close();
             return false;
         }
     }
@@ -162,9 +165,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             user.setEmail(cursor.getString(2));
             user.setPhone(cursor.getString(3));
             user.setPassword(cursor.getString(4));
+            database.close();
             return user;
         }
         else{
+            database.close();
             return null;
         }
     }
@@ -189,6 +194,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 userList.add(user);
             }while(cursor.moveToNext());
 
+        database.close();
         return userList;
 
     }
@@ -409,6 +415,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
 
         cursor.close();
+        db.close();
         return annonces;
     }
 

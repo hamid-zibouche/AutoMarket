@@ -7,6 +7,8 @@
     <color name="green">#00e034</color>
     <color name="blue">#0065d9</color>
     <color name="fond">#EFEFEF</color>
+    <color name="couverture">#0C547C</color>
+    <color name="border">#36A3DF</color>
 
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryVariant">#303F9F</color>

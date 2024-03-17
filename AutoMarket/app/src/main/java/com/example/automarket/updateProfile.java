@@ -1,7 +1,10 @@
 package com.example.automarket;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -49,7 +52,12 @@ public class updateProfile extends AppCompatActivity {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateUserProfile();
+                showConfirmationDialog("Voulez-vous vraiment modifier votre profil ?", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        updateUserProfile();
+                    }
+                });
             }
         });
 
@@ -57,9 +65,23 @@ public class updateProfile extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                showConfirmationDialog("Voulez-vous vraiment quitter sans sauvegarder les modifications ?", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
             }
         });
+    }
+
+    // Méthode pour afficher une boîte de dialogue de confirmation
+    private void showConfirmationDialog(String message, DialogInterface.OnClickListener listener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message)
+                .setPositiveButton("Oui", listener)
+                .setNegativeButton("Non", null)
+                .show();
     }
 
     // Méthode pour récupérer l'ID de l'utilisateur connecté à partir des préférences partagées
@@ -88,8 +110,11 @@ public class updateProfile extends AppCompatActivity {
                 Toast.makeText(updateProfile.this, "Informations mises à jour avec succès", Toast.LENGTH_SHORT).show();
                 // Mettre à jour les informations dans SharedPreferences si nécessaire
                 updateSharedPreferences(currentUser);
-                // Rediriger vers l'activité de profil ou terminer cette activité
-                // Ajoutez votre code ici pour rediriger ou terminer l'activité
+
+
+                Intent intent = new Intent(updateProfile.this, Profile.class);
+                startActivity(intent);
+                finish(); 
             } else {
                 Toast.makeText(updateProfile.this, "Erreur lors de la mise à jour des informations", Toast.LENGTH_SHORT).show();
             }

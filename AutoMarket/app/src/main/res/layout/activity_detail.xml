@@ -91,9 +91,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/white_background2"
-                        android:text="Appeler"
-                        app:icon="@drawable/call" />
+
+                        android:text="@string/appeler"/>
+
 
                     <Button
                         android:id="@+id/datail_message"
@@ -102,7 +102,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/white_background2"
-                        android:text="Message"
+                        android:text="@string/message"
                         app:icon="@drawable/message" />
 
                 </LinearLayout>
@@ -135,7 +135,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="100"
-                        android:text="Description de l'annonce"
+                        android:text="@string/description_de_l_annonce"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -165,7 +165,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Date"
+                            android:text="@string/date"
                             android:textSize="16sp" />
 
                         <TextView
@@ -221,7 +221,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Modele"
+                            android:text="@string/modele"
                             android:textSize="16sp" />
 
                         <TextView
@@ -249,7 +249,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Boite"
+                            android:text="@string/boite"
                             android:textSize="16sp" />
 
                         <TextView
@@ -277,7 +277,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Energie"
+                            android:text="@string/energie"
                             android:textSize="16sp" />
 
                         <TextView

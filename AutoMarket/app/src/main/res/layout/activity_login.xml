@@ -44,22 +44,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
-                    android:text="Connexion"
+                    android:text="@string/connexion"
                     android:textColor="@color/black"
-                    android:textSize="35sp"></TextView>
+                    android:textSize="35sp"> </TextView>
 
-                <TextView
-                    android:id="@+id/error"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="15dp"
-                    android:gravity="center"
-                    android:text="error"
-                    android:textColor="#ff0000"
-                    android:textSize="20sp"
-                    android:visibility="gone"></TextView>
+
 
                 <EditText
                     android:id="@+id/username"
@@ -70,7 +59,7 @@
                     android:layout_marginRight="10dp"
                     android:background="#f2f2f2"
                     android:hint="@string/Nom_Utilisateur"
-                    android:padding="10dp"></EditText>
+                    android:padding="10dp"> </EditText>
 
                 <EditText
                     android:id="@+id/motdepasse"
@@ -80,9 +69,9 @@
                     android:layout_marginTop="35dp"
                     android:layout_marginRight="10dp"
                     android:background="#f2f2f2"
-                    android:hint="Mot de passe"
+                    android:hint="@string/mot_de_passe"
                     android:inputType="textPassword"
-                    android:padding="10dp"></EditText>
+                    android:padding="10dp"> </EditText>
 
                 <TextView
                     android:id="@+id/creercompte"
@@ -90,9 +79,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="35dp"
                     android:gravity="center"
-                    android:text="Creer un compte"
+                    android:text="@string/creer_un_compte"
                     android:textColor="@color/black"
-                    android:textSize="18sp"></TextView>
+                    android:textSize="18sp"> </TextView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -107,7 +96,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="20dp"
                         android:backgroundTint="@color/black"
-                        android:text="SE CONNECTER">
+                        android:text="@string/se_connecter">
 
                     </Button>
 

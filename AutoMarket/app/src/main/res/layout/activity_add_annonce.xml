@@ -18,21 +18,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Bouton de retour -->
-
-
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/arrow"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/retour"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            />
-
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="390dp"

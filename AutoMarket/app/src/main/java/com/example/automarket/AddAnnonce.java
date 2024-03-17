@@ -18,10 +18,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.automarket.Controller.DatabaseHandler;
@@ -69,7 +71,18 @@ public class AddAnnonce extends AppCompatActivity {
         etAdresse = findViewById(R.id.etAdresse);
 
         btnAddAnnonce = findViewById(R.id.btnAddAnnonce);
-        ImageButton btnRetour = findViewById(R.id.btnBack);
+        ImageView retour = findViewById(R.id.retour);
+        TextView titrePage = findViewById(R.id.titrePage);
+
+        retour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmeBack();
+            }
+        });
+        titrePage.setText("Annonce");
+        TextView deconnecter = findViewById(R.id.deconnecter);
+        deconnecter.setVisibility(View.GONE);
 
         imageView = findViewById(R.id.imageView);
         imageView.setOnClickListener(v -> showImageDialog());
@@ -77,7 +90,6 @@ public class AddAnnonce extends AppCompatActivity {
         // Charger l'image par défaut depuis les ressources drawable
         defaultImageBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.addvehicule);
 
-        btnRetour.setOnClickListener(v -> confirmeBack());
 
         btnAddAnnonce.setOnClickListener(v -> addAnnonce());
 

@@ -52,14 +52,14 @@ public class DetailActivity extends AppCompatActivity {
             TextView usernameAnnonce = findViewById(R.id.nomprenom);
             TextView adresseUser = findViewById(R.id.adresseUser);
             TextView phoneUser = findViewById(R.id.numeroTel);
-            ImageView retour = findViewById(R.id.retourDetail);
+            ImageView retour = findViewById(R.id.retour);
+            TextView titrePage = findViewById(R.id.titrePage);
 
-            retour.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
+            //fonction de retour
+            retourFinish(retour);
+            titrePage.setText("Details");
+            TextView deconnecter = findViewById(R.id.deconnecter);
+            deconnecter.setVisibility(View.GONE);
 
             Button detail_appeler = findViewById(R.id.datail_appeler);
 
@@ -83,7 +83,6 @@ public class DetailActivity extends AppCompatActivity {
                 this.startService(messageServiceIntent);
             });
 
-
             Log.d("console",String.valueOf(objet.getUserId()));
             try {
 
@@ -103,8 +102,6 @@ public class DetailActivity extends AppCompatActivity {
             }
 
 
-
-
             titre.setText(objet.getMarque() + " "+objet.getModele()+" "+String.valueOf(objet.getAnnee()));
             prix.setText(String.valueOf(objet.getPrix()) + " €");
             prixTitre.setText(String.valueOf(objet.getPrix()) + " €");
@@ -121,5 +118,14 @@ public class DetailActivity extends AppCompatActivity {
             description.setText(objet.getCommentaire());
 
         }
+    }
+
+    public void retourFinish(ImageView retour){
+        retour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

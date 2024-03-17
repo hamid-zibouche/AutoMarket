@@ -53,5 +53,8 @@
     <string name="berline">Berline</string>
     <string name="automobiles">Automobiles</string>
 
+    <string name="accueil">Accueil</string>
+    <string name="seconnecter">Se Connecter</string>
+
 
 </resources>

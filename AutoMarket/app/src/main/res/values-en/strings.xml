@@ -16,4 +16,7 @@
     <string name="email_field_description">Editable email address field</string>
     <string name="todoo">TODO</string>
     <string name="changer_de_langue">Change language</string>
+    <string name="accueil">Home</string>
+    <string name="seconnecter">Sign Out</string>
+
 </resources>

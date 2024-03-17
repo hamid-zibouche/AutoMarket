@@ -1,0 +1,15 @@
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/customActionBar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="?attr/colorPrimary">
+
+    <!-- Ajoutez ici vos éléments personnalisés, par exemple un titre -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ActionBar personnalisé"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+</androidx.appcompat.widget.Toolbar>

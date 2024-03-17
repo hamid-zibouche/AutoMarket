@@ -1,35 +1,25 @@
 package com.example.automarket;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -39,18 +29,15 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.automarket.Controller.DatabaseHandler;
 import com.example.automarket.Model.Annonce;
 import com.example.automarket.adapter.PopularListAdapter;
 import com.example.automarket.domain.PopularDomain;
 import com.example.automarket.Utils.Utils;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,18 +48,51 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
     private static final int PICK_IMAGE = 1;
-
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ImageView retour = findViewById(R.id.retour);
+        TextView titrePage = findViewById(R.id.titrePage);
+        TextView deconnecter = findViewById(R.id.deconnecter);
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
 
+        if(sharedPreferences.contains(Utils.KEY_ID)){
+        deconnecter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Effacer les informations de l'utilisateur des préférences partagées
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove(Utils.KEY_ID);
+                editor.remove(Utils.KEY_USERNAME);
+                editor.remove(Utils.KEY_EMAIL);
+                editor.apply();
 
+                // Rediriger l'utilisateur vers l'écran de connexion
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish(); // Optionnel : fermer l'activité de profil après la déconnexion
+                Toast.makeText(MainActivity.this, "Vous êtes déconnecté", Toast.LENGTH_SHORT).show();
+            }
+        });
+        }else{
+            deconnecter.setText(R.string.seconnecter);
+            deconnecter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
 
-
+        //cacher le button de retour
+        retour.setVisibility(View.GONE);
+        titrePage.setText(R.string.accueil);
+        
         afficher();
-
         checkStoragePermission();
         initRecyclerView();
 
@@ -83,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(new VehiculesFragment());
         recherche();
     }
+
 
     @Override
     protected void onResume() {
@@ -142,11 +163,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
-
+    
+    
 
     // Méthode pour vérifier si l'utilisateur est déjà connecté
     private boolean isLoggedIn() {
@@ -194,8 +212,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
+    
     private void checkStoragePermission() {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -244,17 +261,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 if (isLoggedIn()) {
-                    Intent intent = new Intent(MainActivity.this, Favoris.class);
+                    Intent intent = new Intent(MainActivity.this, MesAnnonces.class);
                     startActivity(intent);
                 } else {
                     // Rediriger vers l'écran de connexion
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }
-
-
             }
         });
     }
@@ -265,9 +279,7 @@ public class MainActivity extends AppCompatActivity {
         annonce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
+                
                 if (isLoggedIn()) {
                     Intent intent = new Intent(MainActivity.this, AddAnnonce.class);
                     startActivity(intent);

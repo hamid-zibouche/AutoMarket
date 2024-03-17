@@ -23,7 +23,7 @@ public class Profile extends AppCompatActivity {
     Button logoutButton, updateProfile;
     SharedPreferences sharedPreferences;
     TextView usernameTextView, emailTextView, phoneTextView, usernametext;
-  
+
 
 
     @SuppressLint("MissingInflatedId")

@@ -14,13 +14,13 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="280dp"
+            android:layout_height="200dp"
             android:background="#5CC09F">
 
             <ImageView
                 android:id="@+id/photo_user"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp"
                 android:background="@drawable/photo_user" />
@@ -159,9 +159,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout3"
             android:layout_width="match_parent"
-            android:layout_height="186dp"
+            android:layout_height="150dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="6dp"
             android:layout_marginEnd="32dp">
 
 
@@ -169,10 +169,10 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:text="choisir une langue"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:padding="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.485"
@@ -184,7 +184,7 @@
             <Button
                 android:id="@+id/fr"
                 android:layout_width="100dp"
-                android:layout_height="78dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="72dp"
                 android:backgroundTint="@color/black"
                 android:text="FR"
@@ -197,7 +197,7 @@
             <Button
                 android:id="@+id/EN"
                 android:layout_width="100dp"
-                android:layout_height="78dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="4dp"
                 android:backgroundTint="@color/black"
                 android:text="EN"
@@ -215,7 +215,7 @@
             android:layout_width="match_parent"
             android:layout_height="81dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="32dp">
 
             <!-- Bouton de déconnexion -->
@@ -238,7 +238,7 @@
             android:layout_width="match_parent"
             android:layout_height="81dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="32dp">
 
             <!-- Bouton de déconnexion -->

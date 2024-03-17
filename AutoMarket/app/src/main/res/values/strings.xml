@@ -20,6 +20,38 @@
     <string name="d_connexion">Déconnexion</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="retour">Retour</string>
+    <string name="marque">Marque</string>
+    <string name="mod_le">Modèle</string>
+    <string name="boite_de_vitesse">Boite de vitesse</string>
+    <string name="nergie_diesel_essence_lectrique_gpl">Énergie (Diesel, Essence, Électrique, GPL)</string>
+    <string name="moteur">Moteur</string>
+    <string name="kilom_trage">Kilométrage</string>
+    <string name="couleur">Couleur</string>
+    <string name="ann_e_de_fabrication">Année de fabrication</string>
+    <string name="prix">Prix</string>
+    <string name="commentaire">Commentaire</string>
+    <string name="adresse_de_la_voiture">Adresse de la voiture</string>
+    <string name="ajouter_l_annonce">Ajouter l\'annonce</string>
+
+    <string name="appeler">Appeler</string>
+    <string name="message">Message</string>
+    <string name="description_de_l_annonce">Description de l\'annonce</string>
+
+    <string name="date">Date</string>
+
+    <string name="boite">Boite</string>
+
+    <string name="modele">Modele</string>
+
+    <string name="energie">Energie</string>
+    <string name="title">Title</string>
+    <string name="connexion">Connexion</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="creer_un_compte">Creer un compte</string>
+    <string name="se_connecter">SE CONNECTER</string>
+    <string name="berline">Berline</string>
+    <string name="automobiles">Automobiles</string>
 
 
 </resources>

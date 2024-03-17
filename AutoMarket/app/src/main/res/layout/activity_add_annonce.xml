@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/arrow"
             android:background="@android:color/transparent"
-            android:contentDescription="Retour"
+            android:contentDescription="@string/retour"
             android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
             />
@@ -39,42 +39,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Marque" />
+            android:hint="@string/marque" />
 
         <EditText
             android:id="@+id/etModele"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Modèle" />
+            android:hint="@string/mod_le" />
 
         <EditText
             android:id="@+id/etBoite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Boite de vitesse" />
+            android:hint="@string/boite_de_vitesse" />
 
         <EditText
             android:id="@+id/etEnergie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Énergie (Diesel, Essence, Électrique, GPL)" />
+            android:hint="@string/nergie_diesel_essence_lectrique_gpl" />
 
         <EditText
             android:id="@+id/etMoteur"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Moteur" />
+            android:hint="@string/moteur" />
 
         <EditText
             android:id="@+id/etKilometrage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Kilométrage"
+            android:hint="@string/kilom_trage"
             android:inputType="number" />
 
         <EditText
@@ -82,14 +82,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Couleur" />
+            android:hint="@string/couleur" />
 
         <EditText
             android:id="@+id/etAnnee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Année de fabrication"
+            android:hint="@string/ann_e_de_fabrication"
             android:inputType="number" />
 
         <EditText
@@ -97,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Prix"
+            android:hint="@string/prix"
             android:inputType="numberDecimal" />
 
         <EditText
@@ -105,21 +105,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Commentaire" />
+            android:hint="@string/commentaire" />
 
         <EditText
             android:id="@+id/etAdresse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Adresse de la voiture" />
+            android:hint="@string/adresse_de_la_voiture" />
 
         <Button
             android:id="@+id/btnAddAnnonce"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Ajouter l'annonce" />
+            android:text="@string/ajouter_l_annonce" />
 
     </LinearLayout>
 

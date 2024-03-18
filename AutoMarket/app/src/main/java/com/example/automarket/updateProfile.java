@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.automarket.Controller.DatabaseHandler;
@@ -21,7 +22,7 @@ public class updateProfile extends AppCompatActivity {
 
     EditText editUsername, editEmail, editTelephone;
     Button editButton;
-    ImageButton backButton;
+    ImageView backButton;
     DatabaseHandler myDB;
     User currentUser;
 
@@ -34,7 +35,7 @@ public class updateProfile extends AppCompatActivity {
         editEmail = findViewById(R.id.editemail);
         editTelephone = findViewById(R.id.edittelephone);
         editButton = findViewById(R.id.edit);
-        backButton = findViewById(R.id.imageButton2);
+        backButton = findViewById(R.id.retour);
 
         myDB = new DatabaseHandler(this);
 

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText username, password;
     Button button;
-    ImageButton imageButton;
+    ImageView imageButton;
     TextView textView;
     SharedPreferences sharedPreferences;
     DatabaseHandler myDB;
@@ -46,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         // Récupération des vues
         username = findViewById(R.id.username);
         password = findViewById(R.id.motdepasse);
-        imageButton = findViewById(R.id.imageButton);
+        imageButton = findViewById(R.id.retour);
         textView = findViewById(R.id.creercompte);
         button = findViewById(R.id.connection);
 

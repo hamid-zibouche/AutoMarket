@@ -285,9 +285,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 annonce.setPrix(cursor.getDouble(10)); // 10 est l'index de la colonne PRIX
                 annonce.setPhotoUrl(cursor.getString(11)); // 11 est l'index de la colonne PHOTO_URL
                 annonce.setCommentaire(cursor.getString(12)); // 12 est l'index de la colonne COMMENTAIRE
-                annonce.setAdresse(cursor.getString(13));
+                annonce.setAdresse(cursor.getString(13)); // 13 est l'index de la colonne ADRESSE
                 annonce.setDateCreation(cursor.getString(14));
-                annonce.setNbrVue(cursor.getInt(15));
+                annonce.setNbrVue(cursor.getInt(15));//
 
                 annonceList.add(annonce);
             } while (cursor.moveToNext());
@@ -420,5 +420,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
+    public void deleteAnnonce(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Utils.TABLE_ANNONCE, Utils.KEY_ID + " = ?",
+                new String[]{String.valueOf(id)});
+        db.close();
+    }
 
 }

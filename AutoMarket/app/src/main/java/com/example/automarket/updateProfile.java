@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.automarket.Controller.DatabaseHandler;
@@ -36,6 +37,11 @@ public class updateProfile extends AppCompatActivity {
         editTelephone = findViewById(R.id.edittelephone);
         editButton = findViewById(R.id.edit);
         backButton = findViewById(R.id.retour);
+
+        TextView titrePage = findViewById(R.id.titrePage);
+        titrePage.setText("Update Profile");
+        TextView deconnecter = findViewById(R.id.deconnecter);
+        deconnecter.setVisibility(View.GONE);
 
         myDB = new DatabaseHandler(this);
 

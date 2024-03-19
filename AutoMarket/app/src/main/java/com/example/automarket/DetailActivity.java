@@ -5,6 +5,7 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.automarket.Controller.DatabaseHandler;
 import com.example.automarket.Model.Annonce;
 import com.example.automarket.Model.User;
@@ -116,6 +118,18 @@ public class DetailActivity extends AppCompatActivity {
             annee.setText(String.valueOf(objet.getAnnee()));
             adresse.setText(objet.getAdresse());
             description.setText(objet.getCommentaire());
+
+            ImageView photo = findViewById(R.id.imageView4);
+
+            if (objet.getPhotoUrl() != null) {
+                Glide.with(this)
+                        .load(Uri.parse(objet.getPhotoUrl()))
+                        .placeholder(R.drawable.nocar)
+                        .error(R.drawable.nocar)
+                        .into(photo);
+            } else {
+                photo.setImageResource(R.drawable.nocar);
+            }
 
         }
     }

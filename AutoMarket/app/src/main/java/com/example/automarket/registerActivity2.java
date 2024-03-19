@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +20,7 @@ public class registerActivity2 extends AppCompatActivity {
     Button signup;
     EditText username, email, password, confirmpassword, telephone;
     TextView textView;
-    ImageButton imageButton;
+    ImageView imageButton;
 
     DatabaseHandler myDB;
 
@@ -36,7 +37,12 @@ public class registerActivity2 extends AppCompatActivity {
         confirmpassword = findViewById(R.id.confirmpassword);
         telephone = findViewById(R.id.telephone);
         textView = findViewById(R.id.loginRedirectText);
-        imageButton = findViewById(R.id.imageButton2);
+        imageButton = findViewById(R.id.retour);
+
+        TextView titrePage = findViewById(R.id.titrePage);
+        titrePage.setText("Inscription");
+        TextView deconnecter = findViewById(R.id.deconnecter);
+        deconnecter.setVisibility(View.GONE);
 
 
         myDB = new DatabaseHandler(this);

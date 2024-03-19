@@ -51,6 +51,10 @@ public class LoginActivity extends AppCompatActivity {
         textView = findViewById(R.id.creercompte);
         button = findViewById(R.id.connection);
 
+        TextView titrePage = findViewById(R.id.titrePage);
+        titrePage.setText("Login");
+        TextView deconnecter = findViewById(R.id.deconnecter);
+        deconnecter.setVisibility(View.GONE);
 
 
         button.setOnClickListener(new View.OnClickListener() {

@@ -18,6 +18,7 @@
         android:id="@id/scrollView8"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include">
@@ -66,7 +67,6 @@
                     android:layout_weight="1"
 
                     android:background="@drawable/detail_photo_background"
-                    android:src="@drawable/vehicule"
 
                     app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +92,8 @@
                         android:layout_marginEnd="10dp"
                         android:layout_weight="1"
 
-                        android:text="@string/appeler"/>
+                        android:text="@string/appeler"
+                        app:icon="@drawable/call" />
 
 
                     <Button
@@ -101,7 +102,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/white_background2"
                         android:text="@string/message"
                         app:icon="@drawable/message" />
 

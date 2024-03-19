@@ -2,6 +2,7 @@ package com.example.automarket.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,14 +101,20 @@ public class PopularListAdapter extends RecyclerView.Adapter<PopularListAdapter.
         holder.titleTxt.setText(items.get(position).getTitle());
         holder.feeTxt.setText(String.valueOf(items.get(position).getPrice())+"€"); // Convert int to String
         holder.scoreTxt.setText(String.valueOf(items.get(position).getNbrVue()));
+        PopularDomain item = items.get(position);
+        Annonce annonce = item.getAnnonce();
 
 
-        int drawableResourceId = holder.itemView.getResources().getIdentifier(items.get(position).getPicUrl(),
-            "drawable", holder.itemView.getContext().getPackageName());
-        Glide.with(holder.itemView.getContext())
-            .load(drawableResourceId)
-            .transform(new GranularRoundedCorners(30,30,0,0))
-            .into(holder.pic);
+        if (annonce.getPhotoUrl() != null) {
+            Glide.with(holder.itemView.getContext())
+                    .load(Uri.parse(annonce.getPhotoUrl()))
+                    .placeholder(R.drawable.nocar)
+                    //.transform(new GranularRoundedCorners(0,0,0,0))
+                    .error(R.drawable.vehicule2)
+                    .into(holder.pic);
+        } else {
+            holder.pic.setImageResource(R.drawable.nocar);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener(){
 
         @Override

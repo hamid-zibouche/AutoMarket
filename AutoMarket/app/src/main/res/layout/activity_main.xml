@@ -72,7 +72,7 @@
                 android:drawableStart="@drawable/search_icon"
                 android:drawablePadding="8dp"
                 android:ems="10"
-                android:hint="Search for vehicule"
+                android:hint="Search for vehicule (Model,Marque...)"
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:padding="12dp" />

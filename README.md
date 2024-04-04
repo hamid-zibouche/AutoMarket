@@ -1,6 +1,4 @@
-git init
-git add .
-git commit -m 'init'
-git branch main
-git remote add origin https://github.com/hamid-zibouche/AutoMarket.git
-git push -u origin main
+## 1. AutoMarket (Application Mobile d'Annonces d'Achat et Vente de Voitures)
+- **Description** : Application mobile pour annonces de voitures, navigation connectée/non-connectée, publication d'annonces et contacts clients.
+- **Technologies utilisées** : JAVA
+- **Période de réalisation** : 02-2024 à 03-2024
